@@ -1,6 +1,6 @@
 # CSI 5112 - Software Engineering
 
-A Flutter project of shopping web.
+A Flutter project of shopping website.
 
 ## Our Group Members:
 Jiahao Wang </br>
