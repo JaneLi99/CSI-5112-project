@@ -33,7 +33,7 @@ dependencies:
   flappy_search_bar: ^1.7.2
   flutter:
     sdk: flutter
-  google_fonts: ^2.3.1
+  google_fonts: ^2.3.0
   
 
 dev_dependencies:
