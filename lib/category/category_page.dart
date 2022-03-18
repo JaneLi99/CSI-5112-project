@@ -1,4 +1,5 @@
 import 'package:csi5112/customer/CustomerMain.dart';
+import 'package:csi5112/httprequest/get_data.dart';
 import 'package:csi5112/models/product.dart';
 import 'package:csi5112/models/product_model_mock.dart';
 import 'package:csi5112/models/product_models_mock.dart';
@@ -11,54 +12,155 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/semantics.dart';
 
+import '../main.dart';
+
 String currentCategory = "";
 String currentItemName = "";
 int id = 0;
 int quantity = 1;
+// int productCart = 0;
+List items = [];
 
+// keyi yyxk bj
 void main() {
-  runApp(const CategoryItemsMain());
+  runApp(const CategoryHome());
 }
 
-class CategoryItemsMain extends StatelessWidget {
-  const CategoryItemsMain({Key? key}) : super(key: key);
+class CategoryHome extends StatelessWidget {
+  const CategoryHome({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CategorytMain(),
+      home: CategorytScreen(),
     );
   }
 }
 
-class CategorytMain extends StatefulWidget {
+class CategorytScreen extends StatefulWidget {
   @override
-  State<CategorytMain> createState() => _CategorytMainState();
+  State<CategorytScreen> createState() => _CategorytScreenState();
 }
 
-class _CategorytMainState extends State<CategorytMain> {
-  List<ProductModel> items = ProductModels_Mock.products;
+class _CategorytScreenState extends State<CategorytScreen> {
+  @override
+  void initState() {
+    super.initState();
+    products = HttpGet.fetchProducts(MyApp.api + "/" + "product");
 
-  List categoryList = [];
-  List resultList = [];
+    // print(pre_Products.toString());
+    // products.addAll(pre_Products as List<ProductModel>);
+  }
+  // List<ProductModel> products = ProductModels_Mock.products;
+
+  List<String> categoryList = [];
+  List<ProductModel> resultList = [];
+  int productCart = 0;
 
   bool showFruit = true;
   bool showVegetables = false;
   bool showBeverage = false;
+  late Future<List<ProductModel>> products;
+  // List<ProductModel> products = [];
 
-  int productCart = 0;
+  // void convert(Future<List<ProductModel>> list) async {
+  //   Future<List<ProductModel>> fList =
+  //       HttpGet.fetchProducts(MyApp.api + "/" + "product");
+  //   products = await fList;
+  // }
+  // int productCart = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<ProductModel>>(
+      builder: (context, snapshot) {
+        if (snapshot.hasData == false) {
+          return const CircularProgressIndicator();
+        }
+        items = [...snapshot.data as List<ProductModel>];
+        if (resultList.length == 0) {
+          resultList = [...snapshot.data as List<ProductModel>];
+        }
+        generateCategoryList(items);
+        print(currentCategory);
+        return Scaffold(
+          body: Row(
+            children: <Widget>[
+              CategoryLeft(),
+              Expanded(child: categoryRight()),
+            ],
+          ),
+        );
+        // Scaffold(
+        //   body: Row(
+        //     children: <Widget>[
+        //       CategoryLeft(),
+        //       Expanded(
+        //         child: LayoutBuilder(
+        //           builder: (context, costr) {
+        //             var count = (snapshot.data as List<ProductModel>).length;
+        //             // print(count);
+        //             if (costr.maxWidth > 1200) count = 8;
+        //             return
+        //             Scaffold(
+        //               appBar: buildAppBar(),
+        //               body: Column(
+        //                 children: [
+        //                   Expanded(
+        //                     child: Row(
+        //                       children: <Widget>[
+        //                         Expanded(
+        //                           flex: 2,
+        //                           child: GridView.builder(
+        //                             itemCount:
+        //                                 (snapshot.data as List<ProductModel>)
+        //                                     .length,
+        //                             itemBuilder: (context, index) => cartView(
+        //                                 (snapshot.data
+        //                                     as List<ProductModel>)[index]),
+        //                             gridDelegate:
+        //                                 SliverGridDelegateWithFixedCrossAxisCount(
+        //                                     crossAxisCount: 4,
+        //                                     childAspectRatio: 1.3 / 1.5),
+        //                           ),
+        //                         ),
+        //                       ],
+        //                     ),
+        //                   ),
+        //                 ],
+        //               ),
+        //             );
+        //           },
+        //         ),
+        //       ),
+        //     ],
+        //   ),
+        // );
+      },
+      future: products,
+    );
+
+    // await convert(HttpGet.fetchProducts(MyApp.api + "/" + "product"));
+    // if (resultList.length == 0) {
+    //   resultList = [...products];
+    // }
+    // generateCategoryList(products);
+
+    // print(currentCategory);
+    // return mainStructure();
+  }
 
   generateCategoryList(List items) {
     categoryList.clear();
     for (int i = 0; i < items.length; i++) {
       if (!categoryList.contains(items[i].categoryName)) {
         categoryList.add(items[i].categoryName);
-        // print(categoryList);
       }
     }
   }
@@ -70,17 +172,7 @@ class _CategorytMainState extends State<CategorytMain> {
         resultList.add(items[i]);
       }
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if (resultList.length == 0) {
-      resultList = [...items];
-    }
-    generateCategoryList(items);
-
-    print(currentCategory);
-    return mainStructure();
+    print(resultList);
   }
 
   Scaffold mainStructure() {
@@ -153,6 +245,49 @@ class _CategorytMainState extends State<CategorytMain> {
       ),
     );
   }
+/*
+  Widget categoryRight() {
+    return FutureBuilder<List<ProductModel>>(
+      builder: (context, snapshot) {
+        if (snapshot.hasData == false) {
+          return const CircularProgressIndicator();
+        } else {
+          return LayoutBuilder(builder: (context, costr) {
+            var count = (snapshot.data as List<ProductModel>).length;
+            // print(count);
+            if (costr.maxWidth > 1200) count = 8;
+            return Scaffold(
+              appBar: buildAppBar(),
+              body: Column(
+                children: [
+                  Expanded(
+                    child: Row(
+                      children: <Widget>[
+                        Expanded(
+                          flex: 2,
+                          child: GridView.builder(
+                            itemCount:
+                                (snapshot.data as List<ProductModel>).length,
+                            itemBuilder: (context, index) => cartView(
+                                (snapshot.data as List<ProductModel>)[index]),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 4,
+                                    childAspectRatio: 1.3 / 1.5),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+          });
+        }
+      },
+      future: products as Future<List<ProductModel>>,
+    );
+  }*/
 
   Widget categoryRight() {
     return LayoutBuilder(builder: (context, costr) {
@@ -172,7 +307,7 @@ class _CategorytMainState extends State<CategorytMain> {
                       itemBuilder: (context, index) =>
                           cartView(resultList[index]),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4, childAspectRatio: 1.3 / 1.7),
+                          crossAxisCount: 4, childAspectRatio: 1.3 / 1.5),
                     ),
                   ),
                 ],
@@ -259,6 +394,9 @@ class _CategorytMainState extends State<CategorytMain> {
                     icon: Icon(Icons.remove),
                     onPressed: () {
                       value.decrementQuantity(productModel.id);
+                      setState(() {
+                        productCart = value.calTotalQuantity();
+                      });
                     }),
                 Container(
                   decoration: BoxDecoration(
@@ -274,6 +412,9 @@ class _CategorytMainState extends State<CategorytMain> {
                     icon: Icon(Icons.add),
                     onPressed: () {
                       value.incrementQuantity(productModel.id);
+                      setState(() {
+                        productCart = value.calTotalQuantity();
+                      });
                     }),
               ],
             ),
@@ -289,11 +430,12 @@ class _CategorytMainState extends State<CategorytMain> {
                 setState(() {
                   productModel.added = !productModel.added;
                   if (productModel.added) {
-                    productCart++;
                     value.add(productModel);
+                    productCart = value.calTotalQuantity();
                   } else {
-                    productCart--;
+                    // productCart--;
                     value.removeProduct(productModel.id);
+                    productCart = value.calTotalQuantity();
                   }
                 });
               },
@@ -308,7 +450,6 @@ class _CategorytMainState extends State<CategorytMain> {
     String imgPath = "";
     double price = 0.0;
     String description = "";
-
     for (int i = 0; i < items.length; i++) {
       if (items[i].name == currentItemName) {
         imgPath = items[i].imgUrl;

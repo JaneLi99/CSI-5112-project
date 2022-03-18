@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'dart:html';
 import 'package:flutter/foundation.dart';
 import '../models/product_models_mock.dart';
+import '../main.dart';
+import 'package:csi5112/httprequest/get_data.dart';
 
-List items = ProductModels_Mock.products;
-int idCounter = 3;
+List items = [];
+String idCounter = "3";
 String currentCategory = "";
 
 class Dashboard extends StatefulWidget {
@@ -24,6 +26,8 @@ class DashboardState extends State<Dashboard> {
 
   bool isANumber = true;
   RegExp digitValidator = RegExp("[0-9]+");
+
+  late Future<List<ProductModel>> products;
 
   generateResultList(String c) {
     resultList.clear();
@@ -52,14 +56,16 @@ class DashboardState extends State<Dashboard> {
     bool existed = false;
     for (int i = 0; i < items.length; i++) {
       if (items[i].name == newProduct.name) {
-        items[i].quantity = items[i].quantity + newProduct.quantity;
+        items[i].inventory = items[i].inventory + newProduct.inventory;
         existed = true;
         break;
       }
     }
     if (!existed) {
       items.add(newProduct);
-      idCounter++;
+      var idCounterInt = int.parse(idCounter);
+      idCounterInt++;
+      idCounter = idCounterInt.toString();
     }
   }
 
@@ -71,24 +77,41 @@ class DashboardState extends State<Dashboard> {
     color: Colors.grey,
     fontSize: 14.0,
   );
+
+  @override
+  void initState() {
+    super.initState();
+    products = HttpGet.fetchProducts(MyApp.api + "/" + "product");
+
+    // print(pre_Products.toString());
+    // products.addAll(pre_Products as List<ProductModel>);
+  }
+
   @override
   Widget build(BuildContext context) {
-    // generateResultList(currentCategory);
-    // print(items.length);
-
-    if (resultList.length == 0) {
-      resultList = [...items];
-    }
-    generateCategoryList(items);
-
-    return ListView(children: <Widget>[
-      Container(
-        height: 1500,
-        alignment: Alignment.center,
-        child: DashboardContent(),
-      )
-    ]);
     /**/
+    return FutureBuilder<List<ProductModel>>(
+      builder: (context, snapshot) {
+        if (snapshot.hasData == false) {
+          return const CircularProgressIndicator();
+        }
+        items = [...snapshot.data as List<ProductModel>];
+        if (resultList.length == 0) {
+          resultList = [...snapshot.data as List<ProductModel>];
+        }
+
+        generateCategoryList(items);
+
+        return ListView(children: <Widget>[
+          Container(
+            height: 1500,
+            alignment: Alignment.center,
+            child: DashboardContent(),
+          )
+        ]);
+      },
+      future: products,
+    );
   }
 
   Widget OriginalDashboard() {
@@ -306,18 +329,8 @@ class DashboardState extends State<Dashboard> {
               width: 100,
               child: TextField(
                 controller: updateInventoryInput,
-                // keyboardType: TextInputType.number,
-                // onChanged: (inputValue) {
-                //   if (inputValue.isEmpty ||
-                //       digitValidator.hasMatch(inputValue)) {
-                //     setValidator(true);
-                //   } else {
-                //     setValidator(false);
-                //   }
-                //   setState(() {});
-                // },
                 decoration: InputDecoration(
-                  hintText: "${p.quantity}",
+                  hintText: "${p.inventory}",
                 ),
               ),
             ),
@@ -327,7 +340,7 @@ class DashboardState extends State<Dashboard> {
               child: TextButton(
                   onPressed: () {
                     if (digitValidator.hasMatch(updateInventoryInput.text)) {
-                      p.quantity = int.parse(updateInventoryInput.text);
+                      p.inventory = int.parse(updateInventoryInput.text);
                       generateResultList("");
                       showUpdateSuccessAlert(context);
                     } else {
@@ -446,11 +459,6 @@ class DashboardState extends State<Dashboard> {
         TextButton(
             onPressed: () {
               setState(() {
-                // print(addItemCategory.text);
-                // print(addItemName.text);
-                // print(addItemImagePath.text);
-                // print(addItemInventory.text);
-                // print(addItemDescription.text);
                 ProductModel newProduct = ProductModel(
                     id: idCounter,
                     name: addItemName.text,
@@ -458,7 +466,7 @@ class DashboardState extends State<Dashboard> {
                     imgUrl: addItemImagePath.text,
                     price: double.parse(addItemPrice.text),
                     description: addItemDescription.text,
-                    quantity: int.parse(addItemInventory.text));
+                    inventory: int.parse(addItemInventory.text));
                 // print(newProduct);
                 addProduct(newProduct);
                 generateResultList("");
@@ -470,21 +478,10 @@ class DashboardState extends State<Dashboard> {
   }
 
   showUpdateSuccessAlert(BuildContext context) {
-    // Create button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-
     // Create AlertDialog
     AlertDialog succeed = AlertDialog(
       title: Text("Attention:"),
       content: Text("Your inventory has been updated"),
-      actions: [
-        okButton,
-      ],
     );
 
     // show the dialog
@@ -497,20 +494,9 @@ class DashboardState extends State<Dashboard> {
   }
 
   showUpdateFailAlert(BuildContext context) {
-    // Create button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-
     AlertDialog fail = AlertDialog(
       title: Text("Error:"),
       content: Text("Please enter a number."),
-      actions: [
-        okButton,
-      ],
     );
 
     // show the dialog
@@ -523,21 +509,10 @@ class DashboardState extends State<Dashboard> {
   }
 
   showDeleteAlert(BuildContext context) {
-    // Create button
-    Widget okButton = FlatButton(
-      child: Text("OK"),
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-    );
-
     // Create AlertDialog
     AlertDialog alert = AlertDialog(
       title: Text("Attention:"),
       content: Text("The item has been deleted"),
-      actions: [
-        okButton,
-      ],
     );
 
     // show the dialog
@@ -549,15 +524,3 @@ class DashboardState extends State<Dashboard> {
     );
   }
 }
-
-// TextButton deleteCategory() {
-//   return 
-// }
-
-/*
-class showDeleteAlert extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    
-  }
-}*/

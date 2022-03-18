@@ -8,10 +8,10 @@ import 'UserSettingRight.dart';
 import 'PreviousOrders.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(CustomerMainApp());
 }
 
-class MyApp extends StatelessWidget {
+class CustomerMainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -101,10 +101,8 @@ class _CustomerMainState extends State<CustomerMain> {
             Spacer(),
             ElevatedButton.icon(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => CategoryItemsMain()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => CategoryHome()));
               },
               icon: Icon(Icons.arrow_left),
               label: Text("Back to Shopping"),

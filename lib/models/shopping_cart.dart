@@ -28,6 +28,14 @@ class ShoppingCartModel with ChangeNotifier {
     notifyListeners();
   }
 
+  int calTotalQuantity() {
+    int totalQuantity = 0;
+    products.forEach((element) {
+      totalQuantity += element.quantity;
+    });
+    return totalQuantity;
+  }
+
   changeCurrentValue(v) {
     currentValue = v;
     calculateTotalPrice();

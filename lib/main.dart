@@ -9,6 +9,7 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
+  static String api = "https://localhost:7042/api";
   @override
   _MyAppState createState() => _MyAppState();
 }

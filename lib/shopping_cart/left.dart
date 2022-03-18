@@ -78,7 +78,7 @@ class LeftVeiw extends StatelessWidget {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => CategoryItemsMain()));
+                            builder: (context) => CategoryHome()));
                   },
                   icon: Icon(Icons.arrow_left),
                   label: Text("Continue Shopping")),
