@@ -1,9 +1,0 @@
-<<<<<<< HEAD
-2022/03/15-23:35:35.134 6d03 Reusing MANIFEST /private/var/folders/m4/fd6g8t1d3pn8l54rjx1dh0dh0000gn/T/flutter_tools.yheDYA/flutter_tools_chrome_device.nELkbn/Default/Sync Data/LevelDB/MANIFEST-000001
-2022/03/15-23:35:35.134 6d03 Recovering log #3
-2022/03/15-23:35:35.134 6d03 Reusing old log /private/var/folders/m4/fd6g8t1d3pn8l54rjx1dh0dh0000gn/T/flutter_tools.yheDYA/flutter_tools_chrome_device.nELkbn/Default/Sync Data/LevelDB/000003.log 
-=======
-2022/03/17-17:21:41.978 8103 Reusing MANIFEST /private/var/folders/lf/9qxt2_x565s3pvrgl55w2cnc0000gn/T/flutter_tools.zwiMrQ/flutter_tools_chrome_device.HQ1yXx/Default/Sync Data/LevelDB/MANIFEST-000001
-2022/03/17-17:21:41.979 8103 Recovering log #3
-2022/03/17-17:21:41.979 8103 Reusing old log /private/var/folders/lf/9qxt2_x565s3pvrgl55w2cnc0000gn/T/flutter_tools.zwiMrQ/flutter_tools_chrome_device.HQ1yXx/Default/Sync Data/LevelDB/000003.log 
->>>>>>> 3c52bb0 (with backend)
