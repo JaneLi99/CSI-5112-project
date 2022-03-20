@@ -18,11 +18,7 @@ class _RightVeiwState extends State<RightVeiw> {
       fontSize: 18.0,
     );
     return Consumer<ShoppingCartModel>(
-<<<<<<< HEAD
-      builder: (context, ShoppingCartModel, state) => Container(
-=======
       builder: (context, shoppingCartModel, state) => Container(
->>>>>>> b28b353 (Frontend for Phase 2)
         width: 400.0,
         padding: EdgeInsets.all(32.0),
         color: Colors.grey.shade200,
@@ -42,19 +38,11 @@ class _RightVeiwState extends State<RightVeiw> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-<<<<<<< HEAD
-                  "Items ${ShoppingCartModel.products.length}",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
-                ),
-                Text(
-                  "\$${ShoppingCartModel.totalPrice}",
-=======
                   "Items ${shoppingCartModel.products.length}",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
                 ),
                 Text(
                   "\$${shoppingCartModel.totalPrice}",
->>>>>>> b28b353 (Frontend for Phase 2)
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
                 ),
               ],
@@ -76,21 +64,12 @@ class _RightVeiwState extends State<RightVeiw> {
                 child: DropdownButtonHideUnderline(
                   child: DropdownButton(
                     icon: Icon(Icons.keyboard_arrow_down),
-<<<<<<< HEAD
-                    value: ShoppingCartModel.currentValue,
-                    onChanged: (v) {
-                      ShoppingCartModel.changeCurrentValue(v);
-                    },
-                    items: [
-                      for (int dc in ShoppingCartModel.shippingPrice)
-=======
                     value: shoppingCartModel.currentValue,
                     onChanged: (v) {
                       shoppingCartModel.changeCurrentValue(v);
                     },
                     items: [
                       for (int dc in shoppingCartModel.shippingPrice)
->>>>>>> b28b353 (Frontend for Phase 2)
                         DropdownMenuItem(
                           child: Text("Standard Delivery - \$$dc"),
                           value: dc,
@@ -142,11 +121,7 @@ class _RightVeiwState extends State<RightVeiw> {
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
                 ),
                 Text(
-<<<<<<< HEAD
-                  "\$${ShoppingCartModel.paymentPrice}",
-=======
                   "\$${shoppingCartModel.paymentPrice}",
->>>>>>> b28b353 (Frontend for Phase 2)
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14.0),
                 ),
               ],
@@ -158,12 +133,8 @@ class _RightVeiwState extends State<RightVeiw> {
             MaterialButton(
               minWidth: double.infinity,
               onPressed: () async {
-<<<<<<< HEAD
-                postOrderData(ShoppingCartModel);
-=======
                 HttpPost.postOrderData(shoppingCartModel);
                 shoppingCartModel.products.clear();
->>>>>>> b28b353 (Frontend for Phase 2)
                 Navigator.push(
                   context,
                   MaterialPageRoute(

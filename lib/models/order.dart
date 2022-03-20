@@ -31,20 +31,6 @@ class OrderModel {
     return 'OrderModel(orderId : $orderId, userId: $userId, orderDate: $orderDate, totalPrice: $totalPrice, orderAddress: $orderAddress,)';
   }
 
-<<<<<<< HEAD
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is OrderModel &&
-        other.orderId == orderId &&
-        other.userId == userId &&
-        other.orderDate == orderDate &&
-        other.totalPrice == totalPrice &&
-        other.orderAddress == orderAddress;
-  }
-
-=======
   factory OrderModel.fromJson(Map<String, dynamic> json) {
     return OrderModel(
       orderId: json['orderId'],
@@ -76,7 +62,6 @@ class OrderModel {
   //       other.orderAddress == orderAddress;
   // }
 
->>>>>>> b28b353 (Frontend for Phase 2)
   @override
   int get hashCode {
     return orderId.hashCode ^

@@ -1,17 +1,10 @@
-<<<<<<< HEAD
-=======
 import 'package:csi5112/httprequest/get_data.dart';
->>>>>>> b28b353 (Frontend for Phase 2)
 import 'package:csi5112/models/order.dart';
 import 'package:csi5112/models/order_model_mock.dart';
 import 'package:flutter/material.dart';
 import 'Merchant_Main.dart';
 
-<<<<<<< HEAD
-var OrderList = OrderListModel.orders;
-=======
 late List<OrderModel> orderList;
->>>>>>> b28b353 (Frontend for Phase 2)
 
 String currentUser = "";
 List resultList = [];
@@ -25,16 +18,6 @@ class CustomerOrders extends StatefulWidget {
 }
 
 class CustomerOrdersState extends State<CustomerOrders> {
-<<<<<<< HEAD
-  generateResultList(String c) {
-    resultList.clear();
-    if (c == "") {
-      resultList = [...OrderList];
-    } else {
-      for (int i = 0; i < OrderList.length; i++) {
-        if (OrderList[i].userId == c) {
-          resultList.add(OrderList[i]);
-=======
   late Future<List<OrderModel>> preOrderList;
 
   @override
@@ -53,7 +36,6 @@ class CustomerOrdersState extends State<CustomerOrders> {
       for (int i = 0; i < orderList.length; i++) {
         if (orderList[i].userId == c) {
           resultList.add(orderList[i]);
->>>>>>> b28b353 (Frontend for Phase 2)
         }
       }
     }
@@ -71,87 +53,6 @@ class CustomerOrdersState extends State<CustomerOrders> {
 
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    if (resultList.length == 0) {
-      resultList = [...OrderList];
-    }
-
-    generateUserList(OrderList);
-
-    return ListView(children: <Widget>[
-      Container(
-        height: 1500,
-        alignment: Alignment.center,
-        child: Container(
-          color: Colors.yellow[50],
-          padding: EdgeInsets.all(100.0),
-          child: Column(
-            children: [
-              UserSelector(),
-              Table(
-                columnWidths: const {
-                  0: FixedColumnWidth(80.0),
-                  1: FixedColumnWidth(80.0),
-                  2: FixedColumnWidth(100.0),
-                  3: FixedColumnWidth(100.0),
-                  4: FixedColumnWidth(140.0),
-                  5: FixedColumnWidth(100.0),
-                },
-                border: TableBorder.all(
-                  color: Colors.black,
-                  width: 2.0,
-                  style: BorderStyle.solid,
-                ),
-                children: [
-                  TableRow(
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                      ),
-                      children: [
-                        SizedBox(
-                          height: 30.0,
-                          child: Text(
-                            'Order ID',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Text(
-                          'User ID',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'Order Date',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'Total Price',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'Order Address',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'Print Invoice',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                      ]),
-                  for (int i = 0; i < resultList.length; i++)
-                    OrderRow(resultList[i]),
-                ],
-              ),
-            ],
-          ),
-        ),
-      )
-    ])
-=======
     return FutureBuilder<List<OrderModel>>(
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
@@ -242,7 +143,6 @@ class CustomerOrdersState extends State<CustomerOrders> {
       },
       future: preOrderList,
     )
->>>>>>> b28b353 (Frontend for Phase 2)
 
         /*ListView(children: <Widget>[
       Container(

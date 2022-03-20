@@ -1,11 +1,8 @@
 import 'package:csi5112/category/category_page.dart';
-<<<<<<< HEAD
-=======
 import 'package:csi5112/httprequest/delete_data.dart';
 import 'package:csi5112/httprequest/post_data.dart';
 import 'package:csi5112/httprequest/put_data.dart';
 import 'package:csi5112/login/login_page.dart';
->>>>>>> b28b353 (Frontend for Phase 2)
 import 'package:csi5112/models/product.dart';
 import 'package:flutter/material.dart';
 import 'dart:html';
@@ -14,13 +11,9 @@ import '../models/product_models_mock.dart';
 import '../main.dart';
 import 'package:csi5112/httprequest/get_data.dart';
 
-<<<<<<< HEAD
-List items = [];
-=======
 import 'Merchant_Main.dart';
 
 List<ProductModel> items = [];
->>>>>>> b28b353 (Frontend for Phase 2)
 String idCounter = "3";
 String currentCategory = "";
 
@@ -36,28 +29,13 @@ class DashboardState extends State<Dashboard> {
 
   List resultList = [];
   List categoryList = [];
-<<<<<<< HEAD
-=======
   List<String> productIds = [];
->>>>>>> b28b353 (Frontend for Phase 2)
 
   bool isANumber = true;
   RegExp digitValidator = RegExp("[0-9]+");
 
   late Future<List<ProductModel>> products;
 
-<<<<<<< HEAD
-  generateResultList(String c) {
-    resultList.clear();
-    if (c == "") {
-      resultList = [...items];
-    } else {
-      for (int i = 0; i < items.length; i++) {
-        if (items[i].categoryName == c) {
-          resultList.add(items[i]);
-        }
-      }
-=======
   generateResultList(String category) {
     resultList.clear();
     if (category == "") {
@@ -71,7 +49,6 @@ class DashboardState extends State<Dashboard> {
       }
       // productIds = List.from(resultList.id);
       print(productIds);
->>>>>>> b28b353 (Frontend for Phase 2)
     }
   }
 
@@ -96,12 +73,9 @@ class DashboardState extends State<Dashboard> {
     }
     if (!existed) {
       items.add(newProduct);
-<<<<<<< HEAD
-=======
       HttpPost.postProductData(newProduct);
       // HttpDelete.deleteProductList();
       // HttpPost.postProductList(items);
->>>>>>> b28b353 (Frontend for Phase 2)
       var idCounterInt = int.parse(idCounter);
       idCounterInt++;
       idCounter = idCounterInt.toString();
@@ -120,14 +94,7 @@ class DashboardState extends State<Dashboard> {
   @override
   void initState() {
     super.initState();
-<<<<<<< HEAD
-    products = HttpGet.fetchProducts(MyApp.api + "/" + "product");
-
-    // print(pre_Products.toString());
-    // products.addAll(pre_Products as List<ProductModel>);
-=======
     products = HttpGet.fetchProducts();
->>>>>>> b28b353 (Frontend for Phase 2)
   }
 
   @override
@@ -145,15 +112,6 @@ class DashboardState extends State<Dashboard> {
 
         generateCategoryList(items);
 
-<<<<<<< HEAD
-        return ListView(children: <Widget>[
-          Container(
-            height: 1500,
-            alignment: Alignment.center,
-            child: DashboardContent(),
-          )
-        ]);
-=======
         return ListView(
           shrinkWrap: true,
           children: <Widget>[
@@ -164,7 +122,6 @@ class DashboardState extends State<Dashboard> {
             )
           ],
         );
->>>>>>> b28b353 (Frontend for Phase 2)
       },
       future: products,
     );
@@ -199,53 +156,6 @@ class DashboardState extends State<Dashboard> {
   }
 
   Widget DashboardContent() {
-<<<<<<< HEAD
-    return Container(
-      width: 900,
-      color: Colors.yellow[50],
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          SizedBox(height: 32.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Merchant Managment",
-                style: headingTextStyle,
-              ),
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 16.0),
-            height: 1.0,
-            color: Colors.grey,
-          ),
-          Row(
-            children: [
-              CategorySelector(),
-            ], // put in middle
-          ),
-          itemList(),
-          addNewItemList(),
-          if (currentCategory != "")
-            TextButton(
-                onPressed: () {
-                  for (int i = 0; i < items.length; i) {
-                    if (items[i].categoryName == currentCategory) {
-                      items.removeAt(i);
-                      continue;
-                    }
-                    i++;
-                  }
-                  setState(() {
-                    currentCategory = "";
-                    generateResultList(currentCategory);
-                  });
-                },
-                child: Text("Delete ${currentCategory} category")),
-        ],
-=======
     return Expanded(
       child: Container(
         height: 1200,
@@ -300,7 +210,6 @@ class DashboardState extends State<Dashboard> {
                   child: Text("Delete ${currentCategory} category")),
           ],
         ),
->>>>>>> b28b353 (Frontend for Phase 2)
       ),
     );
   }
@@ -334,17 +243,10 @@ class DashboardState extends State<Dashboard> {
       columnWidths: const {
         0: FixedColumnWidth(80.0),
         1: FixedColumnWidth(120.0),
-<<<<<<< HEAD
-        2: FixedColumnWidth(200.0),
-        3: FixedColumnWidth(120.0),
-        4: FixedColumnWidth(120.0),
-        5: FixedColumnWidth(50.0),
-=======
         2: FixedColumnWidth(180.0),
         3: FixedColumnWidth(80.0),
         4: FixedColumnWidth(400.0),
         5: FixedColumnWidth(60.0),
->>>>>>> b28b353 (Frontend for Phase 2)
       },
       border: TableBorder.all(
         color: Colors.black,
@@ -466,9 +368,6 @@ class DashboardState extends State<Dashboard> {
                     } else {
                       showUpdateFailAlert(context);
                     }
-<<<<<<< HEAD
-                    setState(() {});
-=======
                     setState(() {
                       HttpPut.updateProductData(p);
                     });
@@ -476,7 +375,6 @@ class DashboardState extends State<Dashboard> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => MerchantMain()));
->>>>>>> b28b353 (Frontend for Phase 2)
                   },
                   child: Text(
                     "Update",
@@ -497,11 +395,7 @@ class DashboardState extends State<Dashboard> {
         ),
       ),
       Container(
-<<<<<<< HEAD
-        height: 60,
-=======
         height: 80,
->>>>>>> b28b353 (Frontend for Phase 2)
         child: Align(
           child: Text(
             p.description,
@@ -515,10 +409,7 @@ class DashboardState extends State<Dashboard> {
           child: IconButton(
             icon: Icon(Icons.delete),
             onPressed: () {
-<<<<<<< HEAD
-=======
               HttpDelete.deleteProduct(p);
->>>>>>> b28b353 (Frontend for Phase 2)
               items.remove(p);
               generateCategoryList(items);
               setState(() {
@@ -526,11 +417,8 @@ class DashboardState extends State<Dashboard> {
                 // print(currentCategory);
                 generateResultList(currentCategory);
               });
-<<<<<<< HEAD
-=======
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => MerchantMain()));
->>>>>>> b28b353 (Frontend for Phase 2)
             },
           )),
     ]);
@@ -547,21 +435,12 @@ class DashboardState extends State<Dashboard> {
       children: [
         Table(
           columnWidths: const {
-<<<<<<< HEAD
-            0: FixedColumnWidth(120.0),
-            1: FixedColumnWidth(120.0),
-            2: FixedColumnWidth(120.0),
-            3: FixedColumnWidth(120.0),
-            4: FixedColumnWidth(120.0),
-            5: FixedColumnWidth(120.0),
-=======
             0: FixedColumnWidth(80.0),
             1: FixedColumnWidth(120.0),
             2: FixedColumnWidth(180.0),
             3: FixedColumnWidth(80.0),
             4: FixedColumnWidth(400.0),
             5: FixedColumnWidth(60.0),
->>>>>>> b28b353 (Frontend for Phase 2)
           },
           border: TableBorder.all(
             color: Colors.black,
@@ -623,11 +502,8 @@ class DashboardState extends State<Dashboard> {
                 addProduct(newProduct);
                 generateResultList("");
               });
-<<<<<<< HEAD
-=======
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => MerchantMain()));
->>>>>>> b28b353 (Frontend for Phase 2)
             },
             child: Text("Add Inventory")),
       ],
@@ -680,9 +556,6 @@ class DashboardState extends State<Dashboard> {
       },
     );
   }
-<<<<<<< HEAD
-=======
 
   updateBackend() {}
->>>>>>> b28b353 (Frontend for Phase 2)
 }

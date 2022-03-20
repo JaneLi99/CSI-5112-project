@@ -5,11 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-<<<<<<< HEAD
-const shoppingcart = Shoppingcart();
-=======
 // const shoppingcart = Shoppingcart();
->>>>>>> b28b353 (Frontend for Phase 2)
 
 class Shoppingcart extends StatelessWidget {
   const Shoppingcart({Key? key}) : super(key: key);
