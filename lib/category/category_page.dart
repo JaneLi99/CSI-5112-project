@@ -52,7 +52,7 @@ class _CategorytScreenState extends State<CategorytScreen> {
   @override
   void initState() {
     super.initState();
-    products = HttpGet.fetchProducts(MyApp.api + "/" + "product");
+    products = HttpGet.fetchProducts();
 
     // print(pre_Products.toString());
     // products.addAll(pre_Products as List<ProductModel>);
@@ -97,51 +97,6 @@ class _CategorytScreenState extends State<CategorytScreen> {
             ],
           ),
         );
-        // Scaffold(
-        //   body: Row(
-        //     children: <Widget>[
-        //       CategoryLeft(),
-        //       Expanded(
-        //         child: LayoutBuilder(
-        //           builder: (context, costr) {
-        //             var count = (snapshot.data as List<ProductModel>).length;
-        //             // print(count);
-        //             if (costr.maxWidth > 1200) count = 8;
-        //             return
-        //             Scaffold(
-        //               appBar: buildAppBar(),
-        //               body: Column(
-        //                 children: [
-        //                   Expanded(
-        //                     child: Row(
-        //                       children: <Widget>[
-        //                         Expanded(
-        //                           flex: 2,
-        //                           child: GridView.builder(
-        //                             itemCount:
-        //                                 (snapshot.data as List<ProductModel>)
-        //                                     .length,
-        //                             itemBuilder: (context, index) => cartView(
-        //                                 (snapshot.data
-        //                                     as List<ProductModel>)[index]),
-        //                             gridDelegate:
-        //                                 SliverGridDelegateWithFixedCrossAxisCount(
-        //                                     crossAxisCount: 4,
-        //                                     childAspectRatio: 1.3 / 1.5),
-        //                           ),
-        //                         ),
-        //                       ],
-        //                     ),
-        //                   ),
-        //                 ],
-        //               ),
-        //             );
-        //           },
-        //         ),
-        //       ),
-        //     ],
-        //   ),
-        // );
       },
       future: products,
     );
@@ -245,49 +200,6 @@ class _CategorytScreenState extends State<CategorytScreen> {
       ),
     );
   }
-/*
-  Widget categoryRight() {
-    return FutureBuilder<List<ProductModel>>(
-      builder: (context, snapshot) {
-        if (snapshot.hasData == false) {
-          return const CircularProgressIndicator();
-        } else {
-          return LayoutBuilder(builder: (context, costr) {
-            var count = (snapshot.data as List<ProductModel>).length;
-            // print(count);
-            if (costr.maxWidth > 1200) count = 8;
-            return Scaffold(
-              appBar: buildAppBar(),
-              body: Column(
-                children: [
-                  Expanded(
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 2,
-                          child: GridView.builder(
-                            itemCount:
-                                (snapshot.data as List<ProductModel>).length,
-                            itemBuilder: (context, index) => cartView(
-                                (snapshot.data as List<ProductModel>)[index]),
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 4,
-                                    childAspectRatio: 1.3 / 1.5),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            );
-          });
-        }
-      },
-      future: products as Future<List<ProductModel>>,
-    );
-  }*/
 
   Widget categoryRight() {
     return LayoutBuilder(builder: (context, costr) {
@@ -307,7 +219,7 @@ class _CategorytScreenState extends State<CategorytScreen> {
                       itemBuilder: (context, index) =>
                           cartView(resultList[index]),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 4, childAspectRatio: 1.3 / 1.5),
+                          crossAxisCount: 4, childAspectRatio: 1.3 / 1.7),
                     ),
                   ),
                 ],

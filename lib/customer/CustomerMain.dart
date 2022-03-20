@@ -1,6 +1,7 @@
 import 'dart:html';
 
 import 'package:csi5112/category/category_page.dart';
+import 'package:csi5112/customer/ChatBoxCustomer.dart';
 import 'package:csi5112/login/login_page.dart';
 import 'package:flutter/material.dart';
 
@@ -31,8 +32,9 @@ class CustomerMain extends StatefulWidget {
 }
 
 class _CustomerMainState extends State<CustomerMain> {
-  bool showPreviousOrders = true;
+  bool showPreviousOrders = false;
   bool showSettings = false;
+  bool showChatbox = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,6 +43,7 @@ class _CustomerMainState extends State<CustomerMain> {
           MerchantLeft(),
           if (showPreviousOrders) Expanded(child: CustomerOrders()),
           if (showSettings) Expanded(child: UserSettingRight()),
+          if (showChatbox) Expanded(child: ChatBoxCustomer()),
         ],
       ),
     );
@@ -70,8 +73,25 @@ class _CustomerMainState extends State<CustomerMain> {
               onTap: () {
                 setState(() {
                   // showWelcome = false;
+                  showPreviousOrders = false;
+                  showSettings = false;
+                  showChatbox = true;
+                });
+              },
+              horizontalTitleGap: 0.0,
+              leading: const Icon(Icons.chat),
+              title: Text(
+                "Chatbox",
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            ),
+            ListTile(
+              onTap: () {
+                setState(() {
                   showPreviousOrders = true;
                   showSettings = false;
+                  showChatbox = false;
                 });
               },
               horizontalTitleGap: 0.0,
@@ -88,6 +108,7 @@ class _CustomerMainState extends State<CustomerMain> {
                   // showWelcome = false;
                   showPreviousOrders = false;
                   showSettings = true;
+                  showChatbox = false;
                 });
               },
               horizontalTitleGap: 0.0,

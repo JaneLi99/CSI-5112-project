@@ -57,8 +57,8 @@ class _LoginPageState extends State<LoginPage> {
                                   const EdgeInsets.symmetric(horizontal: 8),
                               child: TextField(
                                 decoration: InputDecoration(
-                                    labelText: 'Email Address',
-                                    suffixIcon: Icon(Icons.email,
+                                    labelText: 'User ID',
+                                    suffixIcon: Icon(Icons.person,
                                         color: Colors.grey[300]),
                                     labelStyle:
                                         TextStyle(color: Colors.grey[300]),

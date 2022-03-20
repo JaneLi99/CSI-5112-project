@@ -24,7 +24,11 @@ class ShoppingCartModel with ChangeNotifier {
     } else {
       products.add(productModel);
     }
+<<<<<<< HEAD
     print(productModel.toString());
+=======
+    // print(productModel.toString());
+>>>>>>> b28b353 (Frontend for Phase 2)
     notifyListeners();
   }
 

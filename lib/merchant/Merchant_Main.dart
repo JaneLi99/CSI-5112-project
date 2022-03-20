@@ -3,9 +3,14 @@ import 'dart:html';
 import 'package:csi5112/login/login_page.dart';
 import 'package:flutter/material.dart';
 
+<<<<<<< HEAD
 import 'Dashboard.dart';
 
 import 'UserSettingRight.dart';
+=======
+import 'ChatBoxMerchant.dart';
+import 'Dashboard.dart';
+>>>>>>> b28b353 (Frontend for Phase 2)
 import 'CustomerOrders.dart';
 
 void main() {
@@ -35,7 +40,11 @@ class _MerchantMainState extends State<MerchantMain> {
   // bool showWelcome = ;
   bool showDashboard = true;
   bool showCustomerOrders = false;
+<<<<<<< HEAD
   bool showSettings = false;
+=======
+  bool showChatbox = false;
+>>>>>>> b28b353 (Frontend for Phase 2)
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +53,11 @@ class _MerchantMainState extends State<MerchantMain> {
           MerchantLeft(),
           if (showDashboard) Expanded(child: Dashboard()),
           if (showCustomerOrders) Expanded(child: CustomerOrders()),
+<<<<<<< HEAD
           if (showSettings) Expanded(child: UserSettingRight()),
+=======
+          if (showChatbox) Expanded(child: ChatBoxMerchant()),
+>>>>>>> b28b353 (Frontend for Phase 2)
         ],
       ),
     );
@@ -76,7 +89,11 @@ class _MerchantMainState extends State<MerchantMain> {
                   // showWelcome = false;
                   showDashboard = true;
                   showCustomerOrders = false;
+<<<<<<< HEAD
                   showSettings = false;
+=======
+                  showChatbox = false;
+>>>>>>> b28b353 (Frontend for Phase 2)
                 });
               },
               horizontalTitleGap: 0.0,
@@ -93,7 +110,11 @@ class _MerchantMainState extends State<MerchantMain> {
                   // showWelcome = false;
                   showDashboard = false;
                   showCustomerOrders = true;
+<<<<<<< HEAD
                   showSettings = false;
+=======
+                  showChatbox = false;
+>>>>>>> b28b353 (Frontend for Phase 2)
                 });
               },
               horizontalTitleGap: 0.0,
@@ -110,13 +131,21 @@ class _MerchantMainState extends State<MerchantMain> {
                   // showWelcome = false;
                   showDashboard = false;
                   showCustomerOrders = false;
+<<<<<<< HEAD
                   showSettings = true;
+=======
+                  showChatbox = true;
+>>>>>>> b28b353 (Frontend for Phase 2)
                 });
               },
               horizontalTitleGap: 0.0,
               leading: const Icon(Icons.manage_accounts),
               title: Text(
+<<<<<<< HEAD
                 "Settings",
+=======
+                "Chatbox",
+>>>>>>> b28b353 (Frontend for Phase 2)
                 style:
                     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),

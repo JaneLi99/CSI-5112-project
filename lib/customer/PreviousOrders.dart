@@ -14,9 +14,9 @@ class CustomerOrders extends StatefulWidget {
 class CustomerOrdersState extends State<CustomerOrders> {
   @override
   Widget build(BuildContext context) {
-    return ListView(children: <Widget>[
+    return ListView(shrinkWrap: true, children: <Widget>[
       Container(
-        height: 1500,
+        height: 1200,
         alignment: Alignment.center,
         child: Container(
             color: Colors.yellow[50],
@@ -28,9 +28,9 @@ class CustomerOrdersState extends State<CustomerOrders> {
                     0: FixedColumnWidth(80.0),
                     1: FixedColumnWidth(80.0),
                     2: FixedColumnWidth(100.0),
-                    3: FixedColumnWidth(100.0),
-                    4: FixedColumnWidth(140.0),
-                    5: FixedColumnWidth(100.0),
+                    3: FixedColumnWidth(250.0),
+                    4: FixedColumnWidth(100.0),
+                    // 5: FixedColumnWidth(100.0),
                   },
                   border: TableBorder.all(
                     color: Colors.black,
@@ -51,11 +51,11 @@ class CustomerOrdersState extends State<CustomerOrders> {
                               textAlign: TextAlign.center,
                             ),
                           ),
-                          Text(
-                            'User ID',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
-                          ),
+                          // Text(
+                          //   'User ID',
+                          //   style: TextStyle(fontWeight: FontWeight.bold),
+                          //   textAlign: TextAlign.center,
+                          // ),
                           Text(
                             'Order Date',
                             style: TextStyle(fontWeight: FontWeight.bold),
@@ -99,15 +99,15 @@ class CustomerOrdersState extends State<CustomerOrders> {
           ),
         ),
       ),
-      Container(
-        height: 40,
-        child: Align(
-          child: Text(
-            "${orderModel.userId}",
-            textAlign: TextAlign.center,
-          ),
-        ),
-      ),
+      // Container(
+      //   height: 40,
+      //   child: Align(
+      //     child: Text(
+      //       "${orderModel.userId}",
+      //       textAlign: TextAlign.center,
+      //     ),
+      //   ),
+      // ),
       Container(
         height: 60,
         child: Align(

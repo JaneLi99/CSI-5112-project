@@ -31,6 +31,7 @@ class OrderModel {
     return 'OrderModel(orderId : $orderId, userId: $userId, orderDate: $orderDate, totalPrice: $totalPrice, orderAddress: $orderAddress,)';
   }
 
+<<<<<<< HEAD
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
@@ -43,6 +44,39 @@ class OrderModel {
         other.orderAddress == orderAddress;
   }
 
+=======
+  factory OrderModel.fromJson(Map<String, dynamic> json) {
+    return OrderModel(
+      orderId: json['orderId'],
+      userId: json['userId'],
+      orderDate: json['orderDate'],
+      totalPrice: json['totalPrice'],
+      orderAddress: json['orderAddress'],
+    );
+  }
+
+  static List<OrderModel> fromListJson(List<dynamic> json) {
+    List<OrderModel> result = [];
+    for (Map<String, dynamic> d in json) {
+      OrderModel productModel = OrderModel.fromJson(d);
+      result.add(productModel);
+    }
+    return result;
+  }
+
+  // @override
+  // bool operator ==(Object other) {
+  //   if (identical(this, other)) return true;
+
+  //   return other is OrderModel &&
+  //       other.orderId == orderId &&
+  //       other.userId == userId &&
+  //       other.orderDate == orderDate &&
+  //       other.totalPrice == totalPrice &&
+  //       other.orderAddress == orderAddress;
+  // }
+
+>>>>>>> b28b353 (Frontend for Phase 2)
   @override
   int get hashCode {
     return orderId.hashCode ^
