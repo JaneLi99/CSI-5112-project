@@ -112,15 +112,19 @@ class DashboardState extends State<Dashboard> {
 
         generateCategoryList(items);
 
-        return ListView(
-          shrinkWrap: true,
-          children: <Widget>[
-            Container(
-              // height: 1500,
-              alignment: Alignment.center,
-              child: DashboardContent(),
-            )
-          ],
+        return ConstrainedBox(
+          constraints: BoxConstraints(maxHeight: 3000),
+          child: ListView(
+            // shrinkWrap: true,
+            children: <Widget>[
+              DashboardContent(),
+              // Container(
+              //   // height: 1500,
+              //   alignment: Alignment.center,
+              //   child:
+              // )
+            ],
+          ),
         );
       },
       future: products,
