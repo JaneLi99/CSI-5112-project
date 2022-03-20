@@ -158,7 +158,7 @@ class DashboardState extends State<Dashboard> {
   Widget DashboardContent() {
     return Expanded(
       child: Container(
-        height: 1200,
+        height: 2000,
         // width: 900,
         color: Colors.yellow[50],
         padding: EdgeInsets.all(32.0),
