@@ -21,7 +21,6 @@ int quantity = 1;
 // int productCart = 0;
 List items = [];
 
-// keyi yyxk bj
 void main() {
   runApp(const CategoryHome());
 }
@@ -53,9 +52,6 @@ class _CategorytScreenState extends State<CategorytScreen> {
   void initState() {
     super.initState();
     products = HttpGet.fetchProducts();
-
-    // print(pre_Products.toString());
-    // products.addAll(pre_Products as List<ProductModel>);
   }
   // List<ProductModel> products = ProductModels_Mock.products;
 
@@ -67,14 +63,6 @@ class _CategorytScreenState extends State<CategorytScreen> {
   bool showVegetables = false;
   bool showBeverage = false;
   late Future<List<ProductModel>> products;
-  // List<ProductModel> products = [];
-
-  // void convert(Future<List<ProductModel>> list) async {
-  //   Future<List<ProductModel>> fList =
-  //       HttpGet.fetchProducts(MyApp.api + "/" + "product");
-  //   products = await fList;
-  // }
-  // int productCart = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -100,15 +88,6 @@ class _CategorytScreenState extends State<CategorytScreen> {
       },
       future: products,
     );
-
-    // await convert(HttpGet.fetchProducts(MyApp.api + "/" + "product"));
-    // if (resultList.length == 0) {
-    //   resultList = [...products];
-    // }
-    // generateCategoryList(products);
-
-    // print(currentCategory);
-    // return mainStructure();
   }
 
   generateCategoryList(List items) {

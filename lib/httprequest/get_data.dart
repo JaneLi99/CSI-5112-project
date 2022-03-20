@@ -4,10 +4,7 @@ import 'package:csi5112/main.dart';
 import 'package:csi5112/models/chatbox.dart';
 import 'package:csi5112/models/order.dart';
 import 'package:csi5112/models/product.dart';
-<<<<<<< HEAD
-=======
 import 'package:csi5112/models/user.dart';
->>>>>>> a54d77b (Updated user setting)
 import 'package:http/http.dart' as http;
 
 class HttpGet {
@@ -47,8 +44,6 @@ class HttpGet {
       throw Exception("Request Failed");
     }
   }
-<<<<<<< HEAD
-=======
 
   static Future<List<UserModel>> fetchUsers() async {
     final response = await http.get(Uri.parse(MyApp.api + "/user"));
@@ -58,5 +53,4 @@ class HttpGet {
       throw Exception("Request Failed");
     }
   }
->>>>>>> a54d77b (Updated user setting)
 }

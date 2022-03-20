@@ -9,14 +9,9 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-<<<<<<< HEAD
-//   static String api = "https://localhost:7042/api";
-  static String api = "http://csi5112project-1216580207.us-east-1.elb.amazonaws.com/api";
-=======
   // static String api = "https://localhost:7042/api";
   static String api =
       "http://csi5112project-1216580207.us-east-1.elb.amazonaws.com/api";
->>>>>>> a54d77b (Updated user setting)
   @override
   _MyAppState createState() => _MyAppState();
 }

@@ -142,82 +142,7 @@ class CustomerOrdersState extends State<CustomerOrders> {
         ]);
       },
       future: preOrderList,
-    )
-
-        /*ListView(children: <Widget>[
-      Container(
-        height: 1500,
-        alignment: Alignment.center,
-        child: Container(
-          color: Colors.yellow[50],
-          padding: EdgeInsets.all(100.0),
-          child: Column(
-            children: [
-              UserSelector(),
-              Table(
-                columnWidths: const {
-                  0: FixedColumnWidth(80.0),
-                  1: FixedColumnWidth(80.0),
-                  2: FixedColumnWidth(100.0),
-                  3: FixedColumnWidth(100.0),
-                  4: FixedColumnWidth(140.0),
-                  5: FixedColumnWidth(100.0),
-                },
-                border: TableBorder.all(
-                  color: Colors.black,
-                  width: 2.0,
-                  style: BorderStyle.solid,
-                ),
-                children: [
-                  TableRow(
-                      decoration: BoxDecoration(
-                        color: Colors.grey,
-                      ),
-                      children: [
-                        SizedBox(
-                          height: 30.0,
-                          child: Text(
-                            'Order ID',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Text(
-                          'User ID',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'Order Date',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'Total Price',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'Order Address',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                        Text(
-                          'Print Invoice',
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                        ),
-                      ]),
-                  for (int i = 0; i < resultList.length; i++)
-                    OrderRow(resultList[i]),
-                ],
-              ),
-            ],
-          ),
-        ),
-      )
-    ])*/
-        ;
+    );
   }
 
   TableRow OrderRow(OrderModel orderModel) {
@@ -320,20 +245,4 @@ class CustomerOrdersState extends State<CustomerOrders> {
           )),
     );
   }
-/*
-  Widget cartView(String s) {
-    return Card(
-      child: TextButton(
-          onPressed: () {
-            setState(() {
-              currentUser = s;
-              generateResultList(s);
-            });
-          },
-          child: Text(
-            s,
-            textAlign: TextAlign.left,
-          )),
-    );
-  }*/
 }

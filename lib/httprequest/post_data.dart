@@ -40,23 +40,4 @@ class HttpPost {
     print('Headers: ${response.headers}');
     print('Body: ${response.body}');
   }
-
-  // static Future<void> postProductList(List<ProductModel> l) async {
-  //   final url = Uri.parse(MyApp.api + "/product/");
-  //   final headers = {"Content-type": "application/json"};
-  //   final int id = 0;
-  //   final String name = "name";
-  //   final String categoryName = "cate";
-  //   final double price = 9.99;
-  //   final int inventory = 5;
-  //   final int quantity = 9;
-  //   final String description = "added";
-  //   final String imgUrl = "aa";
-  //   final json =
-  //       '{"productId":"${id}","productName":"${name}","category":"${categoryName}","price":${price},"inventory":${inventory},"quantity":${quantity},"description":"${description}","image":"${imgUrl}"}';
-  //   final response = await post(url, headers: headers, body: json);
-  //   print('Status code: ${response.statusCode}');
-  //   print('Headers: ${response.headers}');
-  //   print('Body: ${response.body}');
-  // }
 }

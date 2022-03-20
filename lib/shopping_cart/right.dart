@@ -141,11 +141,6 @@ class _RightVeiwState extends State<RightVeiw> {
                     builder: (context) => Checkout(),
                   ),
                 );
-                // print(ShoppingCartModel.toString());
-                // final cartInfor =
-                //     (Provider.of<ShoppingCartModel>(context, listen: false));
-                // cartInfor.notifyListeners();
-                // print(cartInfor.paymentPrice);
               },
               child: Text(
                 "Checkout",

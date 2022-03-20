@@ -118,11 +118,6 @@ class DashboardState extends State<Dashboard> {
             // shrinkWrap: true,
             children: <Widget>[
               DashboardContent(),
-              // Container(
-              //   // height: 1500,
-              //   alignment: Alignment.center,
-              //   child:
-              // )
             ],
           ),
         );
@@ -456,17 +451,6 @@ class DashboardState extends State<Dashboard> {
               TextField(
                 decoration: InputDecoration(labelText: "Item Category"),
                 controller: addItemCategory,
-                // keyboardType: TextInputType.number,
-                // onChanged: (inputValue) {
-                //   print(inputValue);
-                //   if (inputValue.isEmpty ||
-                //       digitValidator.hasMatch(inputValue)) {
-                //     setValidator(true);
-                //   } else {
-                //     setValidator(false);
-                //   }
-                //   setState(() {});
-                // },
               ),
               TextField(
                 decoration: InputDecoration(labelText: "Item name"),

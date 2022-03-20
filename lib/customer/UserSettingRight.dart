@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-<<<<<<< HEAD
-=======
 import '../models/user.dart';
 import 'package:csi5112/category/category_page.dart';
 import 'package:csi5112/httprequest/delete_data.dart';
@@ -16,117 +14,12 @@ import '../models/product_models_mock.dart';
 import '../main.dart';
 import 'package:csi5112/httprequest/get_data.dart';
 
->>>>>>> a54d77b (Updated user setting)
 class UserSettingRight extends StatefulWidget {
   @override
   _UserSettingRightState createState() => _UserSettingRightState();
 }
 
 class _UserSettingRightState extends State<UserSettingRight> {
-<<<<<<< HEAD
-// class UserSettingRight extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Row(
-        children: [
-          Expanded(
-            child: Container(
-              width: 900,
-              color: Colors.yellow[50],
-              padding: EdgeInsets.all(16.0),
-              // body: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    "Address",
-                    style: TextStyle(
-                      fontSize: 32.0,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                    child: Column(
-                      children: <Widget>[
-                        TextField(
-                          decoration: InputDecoration(
-                            filled: true,
-                            hintText: "Shipping Address",
-                            fillColor: Colors.white,
-                            border: InputBorder.none,
-                          ),
-                        ),
-                        SizedBox(height: 8.0),
-                        TextField(
-                          decoration: InputDecoration(
-                            filled: true,
-                            hintText: "Billing Address",
-                            fillColor: Colors.white,
-                            border: InputBorder.none,
-                          ),
-                        ),
-                        SizedBox(height: 8.0),
-                        TextField(
-                          decoration: InputDecoration(
-                            filled: true,
-                            hintText: "Country",
-                            fillColor: Colors.white,
-                            border: InputBorder.none,
-                          ),
-                        ),
-                        SizedBox(height: 8.0),
-                        TextField(
-                          decoration: InputDecoration(
-                            filled: true,
-                            hintText: "Email Address",
-                            fillColor: Colors.white,
-                            border: InputBorder.none,
-                          ),
-                        ),
-                        SizedBox(height: 8.0),
-                        TextField(
-                          decoration: InputDecoration(
-                            filled: true,
-                            hintText: "Phone Number",
-                            fillColor: Colors.white,
-                            border: InputBorder.none,
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          child: Container(
-                              height: 50,
-                              width: 170,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    colors: [
-                                      Colors.grey[600]!,
-                                      Colors.grey[800]!
-                                    ],
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight),
-                                borderRadius: BorderRadius.circular(25),
-                              ),
-                              child: const Center(
-                                child: Text(
-                                  'Submit',
-                                  style: TextStyle(
-                                      color: Colors.white, fontSize: 20),
-                                ),
-                              )),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ],
-      ),
-=======
   TextEditingController updateUserName = TextEditingController();
   TextEditingController updatePhoneNumber = TextEditingController();
   TextEditingController updateAddress = TextEditingController();
@@ -216,16 +109,6 @@ class _UserSettingRightState extends State<UserSettingRight> {
                               ),
                             ),
                             SizedBox(height: 8.0),
-                            // TextField(
-                            //   controller: updateEmail,
-                            //   decoration: InputDecoration(
-                            //     filled: true,
-                            //     hintText: "Email Address: ${user.email}",
-                            //     fillColor: Colors.white,
-                            //     border: InputBorder.none,
-                            //   ),
-                            // ),
-                            // SizedBox(height: 8.0),
                             TextButton(
                                 onPressed: () {
                                   setState(() {
@@ -291,7 +174,6 @@ class _UserSettingRightState extends State<UserSettingRight> {
       builder: (BuildContext context) {
         return fail;
       },
->>>>>>> a54d77b (Updated user setting)
     );
   }
 }

@@ -99,15 +99,6 @@ class CustomerOrdersState extends State<CustomerOrders> {
           ),
         ),
       ),
-      // Container(
-      //   height: 40,
-      //   child: Align(
-      //     child: Text(
-      //       "${orderModel.userId}",
-      //       textAlign: TextAlign.center,
-      //     ),
-      //   ),
-      // ),
       Container(
         height: 60,
         child: Align(

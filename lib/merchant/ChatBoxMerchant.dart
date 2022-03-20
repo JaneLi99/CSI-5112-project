@@ -143,39 +143,4 @@ class _ChatBoxMerchantState extends State<ChatBoxMerchant> {
       ],
     );
   }
-
-  // Widget addNewQuestion() {
-  //   TextEditingController addQuestion = TextEditingController();
-
-  //   return Column(
-  //     children: [
-  //       TextField(
-  //         controller: addQuestion,
-  //         decoration: InputDecoration(
-  //           hintText: "Add new question here:",
-  //         ),
-  //       ),
-  //       SizedBox(
-  //         height: 10,
-  //       ),
-  //       TextButton(
-  //           onPressed: () {
-  //             setState(() {
-  //               ChatBoxModel newQuestion = new ChatBoxModel(
-  //                   postId: "post${counter}",
-  //                   question: "${addQuestion.text}",
-  //                   reply: "",
-  //                   postDate: "2022-02-22");
-  //               // LocalChatboxList.add(newQuestion);
-  //               HttpPost.postChatboxData(newQuestion);
-  //               counter++;
-  //             });
-
-  //             Navigator.push(context,
-  //                 MaterialPageRoute(builder: (context) => CustomerMain()));
-  //           },
-  //           child: Text("Submit")),
-  //     ],
-  //   );
-  // }
 }

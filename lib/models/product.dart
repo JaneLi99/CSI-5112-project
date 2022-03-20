@@ -26,18 +26,6 @@ class ProductModel {
     // this.added = false,
   });
 
-  // Map<String, dynamic> toMap() {
-  //   return {
-  //     'id': id,
-  //     'name': name,
-  //     'categoryName': categoryName,
-  //     'imgUrl': imgUrl,
-  //     'price': price,
-  //     'quantity': quantity,
-  //     'description': description,
-  //   };
-  // }
-
   factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       id: json['productId'],
@@ -67,19 +55,6 @@ class ProductModel {
   String toString() {
     return 'ProductModel(id: $id, name: $name, categoryName: $categoryName, imgUrl: $imgUrl, price: $price, quantity: $quantity, inventory: $inventory, description: $description)';
   }
-
-  // @override
-  // bool operator ==(Object other) {
-  //   if (identical(this, other)) return true;
-
-  //   return other is ProductModel &&
-  //       other.id == id &&
-  //       other.name == name &&
-  //       other.categoryName == categoryName &&
-  //       other.imgUrl == imgUrl &&
-  //       other.price == price &&
-  //       other.quantity == quantity;
-  // }
 
   @override
   int get hashCode {

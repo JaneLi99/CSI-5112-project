@@ -2,10 +2,7 @@ import 'package:csi5112/models/chatbox.dart';
 import 'package:csi5112/models/product.dart';
 import 'package:csi5112/models/product.dart';
 import 'package:csi5112/models/shopping_cart.dart';
-<<<<<<< HEAD
-=======
 import 'package:csi5112/models/user.dart';
->>>>>>> a54d77b (Updated user setting)
 import 'package:http/http.dart';
 
 import '../main.dart';
@@ -45,8 +42,6 @@ class HttpPut {
     print('Headers: ${response.headers}');
     print('Body: ${response.body}');
   }
-<<<<<<< HEAD
-=======
 
   static Future<void> updateUserData(UserModel userModel) async {
     final url = Uri.parse(MyApp.api + "/user/" + "${userModel.userId}");
@@ -58,5 +53,4 @@ class HttpPut {
     print('Headers: ${response.headers}');
     print('Body: ${response.body}');
   }
->>>>>>> a54d77b (Updated user setting)
 }
