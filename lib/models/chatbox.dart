@@ -21,7 +21,7 @@ class ChatBoxModel {
 
   factory ChatBoxModel.fromJson(Map<String, dynamic> json) {
     return ChatBoxModel(
-      postId: json['postId'],
+      postId: json['id'],
       question: json['question'],
       reply: json['reply'],
       postDate: json['postDate'],

@@ -48,7 +48,7 @@ class DashboardState extends State<Dashboard> {
         }
       }
       // productIds = List.from(resultList.id);
-      print(productIds);
+      // print(productIds);
     }
   }
 
@@ -95,6 +95,7 @@ class DashboardState extends State<Dashboard> {
   void initState() {
     super.initState();
     products = HttpGet.fetchProducts();
+    // print(products);
   }
 
   @override
@@ -115,8 +116,8 @@ class DashboardState extends State<Dashboard> {
         return ConstrainedBox(
           constraints: BoxConstraints(maxHeight: 3000),
           child: ListView(
-            // shrinkWrap: true,
-            children: <Widget>[
+            shrinkWrap: true,
+            children: [
               DashboardContent(),
             ],
           ),
@@ -126,39 +127,9 @@ class DashboardState extends State<Dashboard> {
     );
   }
 
-  Widget OriginalDashboard() {
-    return Container(
-      width: 900,
-      color: Colors.yellow[50],
-      padding: EdgeInsets.all(16.0),
-      child: Column(
-        children: [
-          SizedBox(height: 32.0),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                "Merchant Managment",
-                style: headingTextStyle,
-              ),
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 16.0),
-            height: 1.0,
-            color: Colors.grey,
-          ),
-          Row(),
-        ],
-      ),
-    );
-  }
-
   Widget DashboardContent() {
     return Expanded(
       child: Container(
-        height: 2000,
-        // width: 900,
         color: Colors.yellow[50],
         padding: EdgeInsets.all(32.0),
         child: Column(
@@ -241,11 +212,12 @@ class DashboardState extends State<Dashboard> {
     return Table(
       columnWidths: const {
         0: FixedColumnWidth(80.0),
-        1: FixedColumnWidth(120.0),
-        2: FixedColumnWidth(180.0),
-        3: FixedColumnWidth(80.0),
-        4: FixedColumnWidth(400.0),
-        5: FixedColumnWidth(60.0),
+        1: FixedColumnWidth(100.0),
+        2: FixedColumnWidth(150.0),
+        3: FixedColumnWidth(120.0),
+        4: FixedColumnWidth(80.0),
+        5: FixedColumnWidth(380.0),
+        6: FixedColumnWidth(60.0),
       },
       border: TableBorder.all(
         color: Colors.black,
@@ -268,6 +240,11 @@ class DashboardState extends State<Dashboard> {
               ),
               Text(
                 'Item',
+                style: TextStyle(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              Text(
+                'Picture',
                 style: TextStyle(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
@@ -324,17 +301,22 @@ class DashboardState extends State<Dashboard> {
       Container(
         height: 60,
         child: Align(
+          child: Text(
+            p.name,
+            textAlign: TextAlign.center,
+            // style: TextStyle(height: 20),
+          ),
+        ),
+      ),
+      Container(
+        height: 80,
+        child: Align(
           child: Column(
             children: [
               Image.network(
                 p.imgUrl,
-                height: 40,
-                width: 40,
-              ),
-              Text(
-                p.name,
-                textAlign: TextAlign.center,
-                // style: TextStyle(height: 20),
+                height: 60,
+                width: 90,
               ),
             ],
           ),
@@ -346,8 +328,8 @@ class DashboardState extends State<Dashboard> {
             child: Row(
           children: [
             SizedBox(
-              height: 60,
-              width: 100,
+              height: 40,
+              width: 50,
               child: TextField(
                 controller: updateInventoryInput,
                 decoration: InputDecoration(
@@ -435,11 +417,12 @@ class DashboardState extends State<Dashboard> {
         Table(
           columnWidths: const {
             0: FixedColumnWidth(80.0),
-            1: FixedColumnWidth(120.0),
-            2: FixedColumnWidth(180.0),
-            3: FixedColumnWidth(80.0),
-            4: FixedColumnWidth(400.0),
-            5: FixedColumnWidth(60.0),
+            1: FixedColumnWidth(100.0),
+            2: FixedColumnWidth(150.0),
+            3: FixedColumnWidth(120.0),
+            4: FixedColumnWidth(80.0),
+            5: FixedColumnWidth(380.0),
+            6: FixedColumnWidth(60.0),
           },
           border: TableBorder.all(
             color: Colors.black,
@@ -454,46 +437,47 @@ class DashboardState extends State<Dashboard> {
               ),
               TextField(
                 decoration: InputDecoration(labelText: "Item name"),
-                controller: addItemName,
+                controller: addItemImagePath,
               ),
               TextField(
                 decoration: InputDecoration(labelText: "Image Path"),
                 controller: addItemImagePath,
               ),
               TextField(
-                decoration: InputDecoration(labelText: "Price"),
-                controller: addItemPrice,
-              ),
-              TextField(
                 decoration: InputDecoration(labelText: "Inventory"),
                 controller: addItemInventory,
+              ),
+              TextField(
+                decoration: InputDecoration(labelText: "Price"),
+                controller: addItemPrice,
               ),
               TextField(
                 decoration: InputDecoration(labelText: "Item Description"),
                 controller: addItemDescription,
               ),
+              IconButton(
+                icon: Icon(Icons.add_business),
+                onPressed: () {
+                  setState(() {
+                    ProductModel newProduct = ProductModel(
+                        id: idCounter,
+                        name: addItemName.text,
+                        categoryName: addItemCategory.text,
+                        imgUrl: addItemImagePath.text,
+                        price: double.parse(addItemPrice.text),
+                        description: addItemDescription.text,
+                        inventory: int.parse(addItemInventory.text));
+                    // print(newProduct);
+                    addProduct(newProduct);
+                    generateResultList("");
+                  });
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MerchantMain()));
+                },
+              ),
             ]),
           ],
         ),
-        TextButton(
-            onPressed: () {
-              setState(() {
-                ProductModel newProduct = ProductModel(
-                    id: idCounter,
-                    name: addItemName.text,
-                    categoryName: addItemCategory.text,
-                    imgUrl: addItemImagePath.text,
-                    price: double.parse(addItemPrice.text),
-                    description: addItemDescription.text,
-                    inventory: int.parse(addItemInventory.text));
-                // print(newProduct);
-                addProduct(newProduct);
-                generateResultList("");
-              });
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MerchantMain()));
-            },
-            child: Text("Add Inventory")),
       ],
     );
   }

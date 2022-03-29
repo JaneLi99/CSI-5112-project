@@ -59,9 +59,9 @@ class _CategorytScreenState extends State<CategorytScreen> {
   List<ProductModel> resultList = [];
   int productCart = 0;
 
-  bool showFruit = true;
-  bool showVegetables = false;
-  bool showBeverage = false;
+  // bool showFruit = true;
+  // bool showVegetables = false;
+  // bool showBeverage = false;
   late Future<List<ProductModel>> products;
 
   @override

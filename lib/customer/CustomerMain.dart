@@ -2,7 +2,8 @@ import 'dart:html';
 
 import 'package:csi5112/category/category_page.dart';
 import 'package:csi5112/customer/ChatBoxCustomer.dart';
-import 'package:csi5112/login/login_page.dart';
+import 'package:csi5112/login/login_page.dart' as loginPage;
+import 'package:csi5112/models/user.dart';
 import 'package:flutter/material.dart';
 
 import 'UserSettingRight.dart';
@@ -16,7 +17,7 @@ class CustomerMainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: '',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -35,6 +36,7 @@ class _CustomerMainState extends State<CustomerMain> {
   bool showPreviousOrders = false;
   bool showSettings = false;
   bool showChatbox = true;
+  UserModel currentUser = loginPage.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +63,7 @@ class _CustomerMainState extends State<CustomerMain> {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Text(
-                "Customer Home",
+                "Welcome, ${currentUser.userName}!",
                 style: TextStyle(
                   color: Colors.amber,
                   fontSize: 25,
@@ -131,8 +133,10 @@ class _CustomerMainState extends State<CustomerMain> {
             // Spacer( ),
             ElevatedButton.icon(
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LoginPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => loginPage.LoginPage()));
               },
               icon: Icon(Icons.arrow_left),
               label: Text("Sign Out"),

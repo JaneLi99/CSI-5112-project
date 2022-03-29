@@ -13,6 +13,7 @@ class Checkout extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Checkout',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

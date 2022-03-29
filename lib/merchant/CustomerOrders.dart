@@ -67,7 +67,7 @@ class CustomerOrdersState extends State<CustomerOrders> {
           resultList = [...orderList];
         }
         generateUserList(orderList);
-        return ListView(shrinkWrap: true, children: <Widget>[
+        return ListView(shrinkWrap: true, children: [
           Container(
             height: 1200,
             alignment: Alignment.center,
@@ -79,7 +79,7 @@ class CustomerOrdersState extends State<CustomerOrders> {
                   UserSelector(),
                   Table(
                     columnWidths: const {
-                      0: FixedColumnWidth(80.0),
+                      0: FixedColumnWidth(120.0),
                       1: FixedColumnWidth(80.0),
                       2: FixedColumnWidth(100.0),
                       3: FixedColumnWidth(100.0),

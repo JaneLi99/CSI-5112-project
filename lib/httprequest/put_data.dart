@@ -9,23 +9,23 @@ import '../main.dart';
 import '../models/product.dart';
 
 class HttpPut {
-  static Future<void> updateOrderData(
-      ShoppingCartModel shoppingCartModel) async {
-    final url = Uri.parse('https://localhost:7042/api/order/o001111');
-    final headers = {"Content-type": "application/json"};
-    final json =
-        '{"orderId":"o001111","userId":"u0011111","orderDate":${DateTime.now()},"totalPrice":${shoppingCartModel.paymentPrice},"orderAddress":"33-186 Stewart Street"}';
-    final response = await put(url, headers: headers, body: json);
-    print('Status code: ${response.statusCode}');
-    print('Headers: ${response.headers}');
-    print('Body: ${response.body}');
-  }
+  // static Future<void> updateOrderData(
+  //     ShoppingCartModel shoppingCartModel) async {
+  //   final url = Uri.parse('https://localhost:7042/api/order/o001111');
+  //   final headers = {"Content-type": "application/json"};
+  //   final json =
+  //       '{"orderId":"o001111","userId":"u0011111","orderDate":${DateTime.now()},"totalPrice":${shoppingCartModel.paymentPrice},"orderAddress":"33-186 Stewart Street"}';
+  //   final response = await put(url, headers: headers, body: json);
+  //   print('Status code: ${response.statusCode}');
+  //   print('Headers: ${response.headers}');
+  //   print('Body: ${response.body}');
+  // }
 
   static Future<void> updateChatboxData(ChatBoxModel chatBoxModel) async {
-    final url = Uri.parse(MyApp.api + "/chatbox/" + "${chatBoxModel.postId}");
+    final url = Uri.parse(MyApp.api + "/chatbox");
     final headers = {"Content-type": "application/json"};
     final json =
-        '{"postId":"${chatBoxModel.postId}","question":"${chatBoxModel.question}","reply":"${chatBoxModel.reply}","postDate":"${chatBoxModel.postDate}"}';
+        '{"id":"${chatBoxModel.postId}","question":"${chatBoxModel.question}","reply":"${chatBoxModel.reply}","postDate":"${chatBoxModel.postDate}"}';
     final response = await put(url, headers: headers, body: json);
     print('Status code: ${response.statusCode}');
     print('Headers: ${response.headers}');
@@ -33,10 +33,10 @@ class HttpPut {
   }
 
   static Future<void> updateProductData(ProductModel productModel) async {
-    final url = Uri.parse(MyApp.api + "/product/" + "${productModel.id}");
+    final url = Uri.parse(MyApp.api + "/product");
     final headers = {"Content-type": "application/json"};
     final json =
-        '{"productId":"${productModel.id}","productName":"${productModel.name}","category":"${productModel.categoryName}","price":${productModel.price},"inventory":${productModel.inventory},"quantity":1,"description":"${productModel.description}","image":"${productModel.imgUrl}"}';
+        '{"id":"${productModel.id}","productName":"${productModel.name}","category":"${productModel.categoryName}","price":${productModel.price},"inventory":${productModel.inventory},"quantity":1,"description":"${productModel.description}","image":"${productModel.imgUrl}"}';
     final response = await put(url, headers: headers, body: json);
     print('Status code: ${response.statusCode}');
     print('Headers: ${response.headers}');
@@ -44,10 +44,10 @@ class HttpPut {
   }
 
   static Future<void> updateUserData(UserModel userModel) async {
-    final url = Uri.parse(MyApp.api + "/user/" + "${userModel.userId}");
+    final url = Uri.parse(MyApp.api + "/user");
     final headers = {"Content-type": "application/json"};
     final json =
-        '{"userId":"${userModel.userId}","password":"${userModel.password}","userName":"${userModel.userName}","phoneNumber":"${userModel.phoneNumber}","address":"${userModel.address}"}';
+        '{"id":"${userModel.userId}","password":"${userModel.password}","userName":"${userModel.userName}","phoneNumber":"${userModel.phoneNumber}","address":"${userModel.address}"}';
     final response = await put(url, headers: headers, body: json);
     print('Status code: ${response.statusCode}');
     print('Headers: ${response.headers}');

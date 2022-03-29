@@ -1,6 +1,7 @@
 import 'package:csi5112/models/chatbox.dart';
 import 'package:csi5112/models/product.dart';
 import 'package:csi5112/models/shopping_cart.dart';
+import 'package:csi5112/models/user.dart';
 import 'package:http/http.dart';
 
 import '../main.dart';
@@ -19,10 +20,10 @@ class HttpPost {
   }
 
   static Future<void> postProductData(ProductModel productModel) async {
-    final url = Uri.parse(MyApp.api + "/product/" + "${productModel.id}");
+    final url = Uri.parse(MyApp.api + "/product");
     final headers = {"Content-type": "application/json"};
     final json =
-        '{"productId":"${productModel.id}","productName":"${productModel.name}","category":"${productModel.categoryName}","price":${productModel.price},"inventory":${productModel.inventory},"quantity":${productModel.quantity},"description":"${productModel.description}","image":"${productModel.imgUrl}"}';
+        '{"productName":"${productModel.name}","category":"${productModel.categoryName}","price":${productModel.price},"inventory":${productModel.inventory},"quantity":${productModel.quantity},"description":"${productModel.description}","image":"${productModel.imgUrl}"}';
     final response = await post(url, headers: headers, body: json);
     print('Status code: ${response.statusCode}');
     print('Headers: ${response.headers}');
@@ -31,10 +32,22 @@ class HttpPost {
 
   static Future<void> postChatboxData(ChatBoxModel chatBoxModel) async {
     // print(shoppingCartModel.toString());
-    final url = Uri.parse(MyApp.api + "/chatbox/" + "${chatBoxModel.postId}");
+    final url = Uri.parse(MyApp.api + "/chatbox");
     final headers = {"Content-type": "application/json"};
     final json =
-        '{"postId":"${chatBoxModel.postId}","question":"${chatBoxModel.question}","reply":"${chatBoxModel.reply}","postDate":"${chatBoxModel.postDate}"}';
+        '{"question":"${chatBoxModel.question}","reply":"${chatBoxModel.reply}","postDate":"${chatBoxModel.postDate}"}';
+    final response = await post(url, headers: headers, body: json);
+    print('Status code: ${response.statusCode}');
+    print('Headers: ${response.headers}');
+    print('Body: ${response.body}');
+  }
+
+  static Future<void> postUserData(UserModel userModel) async {
+    // print(shoppingCartModel.toString());
+    final url = Uri.parse(MyApp.api + "/user");
+    final headers = {"Content-type": "application/json"};
+    final json =
+        '{"userName":"${userModel.userName}","password":"${userModel.password}","phoneNumber":"${userModel.phoneNumber}","address":"${userModel.address}"}';
     final response = await post(url, headers: headers, body: json);
     print('Status code: ${response.statusCode}');
     print('Headers: ${response.headers}');
