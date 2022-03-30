@@ -12,18 +12,14 @@ class ProductModel {
   int inventory;
   String description;
   bool added = false;
-  // ProductModel(this.id, this.name, this.categoryName, this.imgUrl, this.price,
-  //     this.quantity, this.description);
   ProductModel({
     required this.id,
     required this.name,
     required this.categoryName,
     required this.imgUrl,
     required this.price,
-    // required this.quantity,
     required this.inventory,
     required this.description,
-    // this.added = false,
   });
 
   factory ProductModel.fromJson(Map<String, dynamic> json) {
@@ -33,7 +29,6 @@ class ProductModel {
       categoryName: json['category'],
       imgUrl: json['image'],
       price: json['price'],
-      // quantity: json['inventory'],
       inventory: json['inventory'],
       description: json['description'],
     );
@@ -42,8 +37,6 @@ class ProductModel {
   static List<ProductModel> fromListJson(List<dynamic> json) {
     List<ProductModel> result = [];
     for (Map<String, dynamic> d in json) {
-      // print(json.length);
-      // print(d.toString());
       ProductModel productModel = ProductModel.fromJson(d);
       // print(productModel.toString());
       result.add(productModel);

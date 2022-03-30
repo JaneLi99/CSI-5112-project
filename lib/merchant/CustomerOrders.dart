@@ -1,6 +1,5 @@
 import 'package:csi5112/httprequest/get_data.dart';
 import 'package:csi5112/models/order.dart';
-import 'package:csi5112/models/order_model_mock.dart';
 import 'package:flutter/material.dart';
 import 'Merchant_Main.dart';
 
@@ -24,8 +23,6 @@ class CustomerOrdersState extends State<CustomerOrders> {
   void initState() {
     super.initState();
     preOrderList = HttpGet.fetchOrders();
-    // print(pre_Products.toString());
-    // products.addAll(pre_Products as List<ProductModel>);
   }
 
   generateResultList(String c) {
@@ -51,6 +48,11 @@ class CustomerOrdersState extends State<CustomerOrders> {
     }
   }
 
+  var headingTextStyle = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 18.0,
+  );
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<OrderModel>>(
@@ -70,12 +72,27 @@ class CustomerOrdersState extends State<CustomerOrders> {
         return ListView(shrinkWrap: true, children: [
           Container(
             height: 1200,
-            alignment: Alignment.center,
+            alignment: Alignment.topCenter,
             child: Container(
               color: Colors.yellow[50],
-              padding: EdgeInsets.all(100.0),
+              padding: EdgeInsets.all(32.0),
               child: Column(
                 children: [
+                  SizedBox(height: 32.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        "Customer Order View",
+                        style: headingTextStyle,
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 16.0),
+                    height: 1.0,
+                    color: Colors.grey,
+                  ),
                   UserSelector(),
                   Table(
                     columnWidths: const {
@@ -146,6 +163,20 @@ class CustomerOrdersState extends State<CustomerOrders> {
   }
 
   TableRow OrderRow(OrderModel orderModel) {
+    List<String> products = [];
+    List<String> unitPrice = [];
+    List<String> quantities = [];
+    String orderDetails = "";
+
+    products = orderModel.products.split(',');
+    unitPrice = orderModel.unitPrice.split(',');
+    quantities = orderModel.quantities.split(',');
+
+    for (int j = 0; j < products.length - 1; j++) {
+      String s =
+          products[j] + " * " + quantities[j] + " @ " + unitPrice[j] + "\n";
+      orderDetails = orderDetails + s;
+    }
     return TableRow(children: [
       Container(
         height: 40,
@@ -201,10 +232,9 @@ class CustomerOrdersState extends State<CustomerOrders> {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) => AlertDialog(
-                          title:
-                              Text("Your invoice \n# ${orderModel.orderId}:"),
+                          title: Text("Invoice # ${orderModel.orderId}:"),
                           content: Text(
-                              "User ID: \n${orderModel.userId}n\nOrder Time: \n${orderModel.orderDate}\n\nTotal Price: \n${orderModel.totalPrice}\n"),
+                              "User Name: \n${orderModel.userId}\n\nOrder Time: \n${orderModel.orderDate}\n\nProducts: \n$orderDetails\n\nTotalPrice: \n${orderModel.totalPrice}\n"),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.pop(context, 'OK'),

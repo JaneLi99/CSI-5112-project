@@ -1,7 +1,6 @@
 import 'package:csi5112/httprequest/post_data.dart';
 import 'package:csi5112/models/chatbox.dart';
 import 'package:flutter/material.dart';
-import '../models/chatbox_model_mock.dart';
 import 'package:csi5112/customer/CustomerMain.dart';
 import 'package:csi5112/httprequest/get_data.dart';
 

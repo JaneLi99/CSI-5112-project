@@ -7,7 +7,6 @@ import 'package:csi5112/models/product.dart';
 import 'package:flutter/material.dart';
 import 'dart:html';
 import 'package:flutter/foundation.dart';
-import '../models/product_models_mock.dart';
 import '../main.dart';
 import 'package:csi5112/httprequest/get_data.dart';
 
@@ -74,8 +73,6 @@ class DashboardState extends State<Dashboard> {
     if (!existed) {
       items.add(newProduct);
       HttpPost.postProductData(newProduct);
-      // HttpDelete.deleteProductList();
-      // HttpPost.postProductList(items);
       var idCounterInt = int.parse(idCounter);
       idCounterInt++;
       idCounter = idCounterInt.toString();
@@ -437,7 +434,7 @@ class DashboardState extends State<Dashboard> {
               ),
               TextField(
                 decoration: InputDecoration(labelText: "Item name"),
-                controller: addItemImagePath,
+                controller: addItemName,
               ),
               TextField(
                 decoration: InputDecoration(labelText: "Image Path"),

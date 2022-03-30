@@ -10,7 +10,6 @@ import 'package:csi5112/models/product.dart';
 import 'package:flutter/material.dart';
 import 'dart:html';
 import 'package:flutter/foundation.dart';
-import '../models/product_models_mock.dart';
 import '../main.dart';
 import 'package:csi5112/httprequest/get_data.dart';
 

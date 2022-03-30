@@ -1,8 +1,12 @@
 import 'dart:math';
 
+import 'package:csi5112/login/login_page.dart' as loginPage;
+import 'package:csi5112/models/user.dart';
 import 'package:flutter/foundation.dart';
 
 import 'package:csi5112/models/product.dart';
+
+UserModel currentUser = loginPage.currentUser;
 
 class ShoppingCartModel with ChangeNotifier {
   List<ProductModel> products = [];
@@ -10,6 +14,8 @@ class ShoppingCartModel with ChangeNotifier {
   List<int> shippingPrice = [10, 20, 50, 100];
   double paymentPrice = 0;
   int currentValue = 10;
+  String userName = currentUser.userName;
+  String address = currentUser.address;
 
   ShoppingCartModel() {
     calculateTotalPrice();
@@ -25,6 +31,7 @@ class ShoppingCartModel with ChangeNotifier {
       products.add(productModel);
     }
     // print(productModel.toString());
+    calculateTotalPrice();
     notifyListeners();
   }
 
@@ -45,6 +52,7 @@ class ShoppingCartModel with ChangeNotifier {
     var i = products.indexWhere((element) => element.id == id);
     if (i != -1) products[i].quantity++;
     calculateTotalPrice();
+    // print(products.toString());
   }
 
   decrementQuantity(id) {
@@ -55,6 +63,7 @@ class ShoppingCartModel with ChangeNotifier {
       removeProduct(id);
     }
     calculateTotalPrice();
+    // print(products.toString());
   }
 
   removeProduct(id) {

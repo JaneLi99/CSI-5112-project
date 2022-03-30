@@ -4,6 +4,10 @@ import 'package:csi5112/category/category_page.dart';
 import 'package:csi5112/customer/CustomerMain.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:csi5112/login/login_page.dart' as loginPage;
+import 'package:csi5112/models/user.dart';
+
+UserModel currentUser = loginPage.currentUser;
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -87,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "You've Checked Out Sucessfully",
+                                "Thank you ${currentUser.userName}!\nYou've Checked Out Sucessfully",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 64.0,

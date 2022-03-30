@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'checkout_home.dart';
+import 'package:csi5112/login/login_page.dart' as loginPage;
+import 'package:csi5112/models/user.dart';
 
 void main() {
   runApp(const Checkout());

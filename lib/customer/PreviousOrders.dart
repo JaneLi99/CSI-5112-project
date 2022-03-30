@@ -1,5 +1,4 @@
 import 'package:csi5112/models/order.dart';
-import 'package:csi5112/models/order_model_mock.dart';
 import 'package:csi5112/login/login_page.dart' as loginPage;
 import 'package:flutter/material.dart';
 
@@ -29,6 +28,11 @@ class CustomerOrdersState extends State<CustomerOrders> {
     orders = HttpGet.fetchOrders();
   }
 
+  var headingTextStyle = TextStyle(
+    fontWeight: FontWeight.bold,
+    fontSize: 18.0,
+  );
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<List<OrderModel>>(
@@ -54,13 +58,29 @@ class CustomerOrdersState extends State<CustomerOrders> {
             alignment: Alignment.center,
             color: Colors.yellow[50],
             child: Container(
-                padding: EdgeInsets.all(100.0),
+                padding: EdgeInsets.all(32.0),
                 child: Column(
                   children: [
+                    SizedBox(height: 32.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Your Orders Here",
+                          style: headingTextStyle,
+                        ),
+                      ],
+                    ),
+                    Container(
+                      margin: EdgeInsets.symmetric(vertical: 16.0),
+                      height: 1.0,
+                      color: Colors.grey,
+                    ),
+                    SizedBox(height: 32.0),
                     Table(
                       columnWidths: const {
                         0: FixedColumnWidth(120.0),
-                        1: FixedColumnWidth(80.0),
+                        1: FixedColumnWidth(120.0),
                         2: FixedColumnWidth(100.0),
                         3: FixedColumnWidth(200.0),
                         4: FixedColumnWidth(100.0),
@@ -86,11 +106,6 @@ class CustomerOrdersState extends State<CustomerOrders> {
                                   textAlign: TextAlign.center,
                                 ),
                               ),
-                              // Text(
-                              //   'User ID',
-                              //   style: TextStyle(fontWeight: FontWeight.bold),
-                              //   textAlign: TextAlign.center,
-                              // ),
                               Text(
                                 'Order Date',
                                 style: TextStyle(fontWeight: FontWeight.bold),
@@ -126,6 +141,21 @@ class CustomerOrdersState extends State<CustomerOrders> {
   }
 
   TableRow OrderColumn(OrderModel orderModel) {
+    List<String> products = [];
+    List<String> unitPrice = [];
+    List<String> quantities = [];
+    String orderDetails = "";
+
+    products = orderModel.products.split(',');
+    unitPrice = orderModel.unitPrice.split(',');
+    quantities = orderModel.quantities.split(',');
+
+    for (int j = 0; j < products.length - 1; j++) {
+      String s =
+          products[j] + " * " + quantities[j] + " @ " + unitPrice[j] + "\n";
+      orderDetails = orderDetails + s;
+    }
+
     return TableRow(children: [
       Container(
         height: 40,
@@ -175,7 +205,7 @@ class CustomerOrdersState extends State<CustomerOrders> {
                           title:
                               Text("Your invoice \n# ${orderModel.orderId}:"),
                           content: Text(
-                              "User Name: \n${orderModel.userId}\n\nOrder Time: \n${orderModel.orderDate}\n\nTotal Price: \n${orderModel.totalPrice}\n"),
+                              "User Name: \n${orderModel.userId}\n\nOrder Time: \n${orderModel.orderDate}\n\nProducts: \n$orderDetails\n\nTotalPrice: \n${orderModel.totalPrice}\n"),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.pop(context, 'OK'),

@@ -8,11 +8,28 @@ import '../main.dart';
 
 class HttpPost {
   static Future<void> postOrderData(ShoppingCartModel shoppingCartModel) async {
-    // print(shoppingCartModel.toString());
-    final url = Uri.parse(MyApp.api + "/order/" + "11111");
+    String productName = "";
+    String productPrice = "";
+    String productQuantity = "";
+
+    for (int i = 0; i < shoppingCartModel.products.length; i++) {
+      productName = productName + shoppingCartModel.products[i].name + ",";
+      productPrice =
+          productPrice + "${shoppingCartModel.products[i].price}" + ",";
+      productQuantity =
+          productQuantity + "${shoppingCartModel.products[i].quantity}" + ",";
+      // productPrice.add(shoppingCartModel.products[i].price);
+      // productQuantity.add(shoppingCartModel.products[i].quantity);
+    }
+
+    print(productName);
+    print(productPrice);
+    print(productQuantity);
+    final url = Uri.parse(MyApp.api + "/order");
     final headers = {"Content-type": "application/json"};
     final json =
-        '{"orderId":"11111","userId":"u0011111","orderDate":"${DateTime.now()}","totalPrice":${shoppingCartModel.paymentPrice},"orderAddress":"33-186 Stewart Street"}';
+        '{"userId":"${shoppingCartModel.userName}","orderDate":"${DateTime.now()}","totalPrice":${shoppingCartModel.totalPrice},"orderAddress":"${shoppingCartModel.address}","products":"${productName}","unitPrice":"${productPrice}","quantities":"${productQuantity}"}';
+    print(json);
     final response = await post(url, headers: headers, body: json);
     print('Status code: ${response.statusCode}');
     print('Headers: ${response.headers}');

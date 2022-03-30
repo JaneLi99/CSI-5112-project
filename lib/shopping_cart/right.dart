@@ -1,9 +1,11 @@
 import 'package:csi5112/checkout/checkout_main.dart';
 import 'package:csi5112/httprequest/post_data.dart';
-import 'package:csi5112/models/shopping_cart.dart';
+import 'package:csi5112/models/shopping_cart.dart' as shopping_cart;
 import 'package:csi5112/shopping_cart/shopping_cart_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+// ShoppingCartModel shoppingCartModel
 
 class RightVeiw extends StatefulWidget {
   @override
@@ -12,12 +14,19 @@ class RightVeiw extends StatefulWidget {
 
 class _RightVeiwState extends State<RightVeiw> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var headingTextStyle = const TextStyle(
       fontWeight: FontWeight.bold,
       fontSize: 18.0,
     );
-    return Consumer<ShoppingCartModel>(
+
+    return Consumer<shopping_cart.ShoppingCartModel>(
       builder: (context, shoppingCartModel, state) => Container(
         width: 400.0,
         padding: EdgeInsets.all(32.0),
@@ -133,14 +142,18 @@ class _RightVeiwState extends State<RightVeiw> {
             MaterialButton(
               minWidth: double.infinity,
               onPressed: () async {
-                HttpPost.postOrderData(shoppingCartModel);
-                shoppingCartModel.products.clear();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Checkout(),
-                  ),
-                );
+                if (shoppingCartModel.products.length == 0) {
+                  showCartEmptyAlert(context);
+                } else {
+                  HttpPost.postOrderData(shoppingCartModel);
+                  shoppingCartModel.products.clear();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Checkout(),
+                    ),
+                  );
+                }
               },
               child: Text(
                 "Checkout",
@@ -155,6 +168,22 @@ class _RightVeiwState extends State<RightVeiw> {
           ],
         ),
       ),
+    );
+  }
+
+  showCartEmptyAlert(BuildContext context) {
+    AlertDialog alert = AlertDialog(
+      title: Text("Your Cart is empty."),
+      insetPadding: EdgeInsets.zero,
+      content: Text("Please add something before checkout."),
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Expanded(child: alert);
+      },
     );
   }
 }

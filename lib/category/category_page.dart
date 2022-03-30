@@ -1,8 +1,6 @@
 import 'package:csi5112/customer/CustomerMain.dart';
 import 'package:csi5112/httprequest/get_data.dart';
 import 'package:csi5112/models/product.dart';
-import 'package:csi5112/models/product_model_mock.dart';
-import 'package:csi5112/models/product_models_mock.dart';
 import 'package:csi5112/models/shopping_cart.dart';
 import 'package:csi5112/shopping_cart/shopping_cart_page.dart';
 
@@ -58,10 +56,6 @@ class _CategorytScreenState extends State<CategorytScreen> {
   List<String> categoryList = [];
   List<ProductModel> resultList = [];
   int productCart = 0;
-
-  // bool showFruit = true;
-  // bool showVegetables = false;
-  // bool showBeverage = false;
   late Future<List<ProductModel>> products;
 
   @override
@@ -323,10 +317,12 @@ class _CategorytScreenState extends State<CategorytScreen> {
                   if (productModel.added) {
                     value.add(productModel);
                     productCart = value.calTotalQuantity();
+                    value.calculateTotalPrice();
                   } else {
                     // productCart--;
                     value.removeProduct(productModel.id);
                     productCart = value.calTotalQuantity();
+                    value.calculateTotalPrice();
                   }
                 });
               },

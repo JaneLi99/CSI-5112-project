@@ -2,7 +2,6 @@ import 'package:csi5112/httprequest/post_data.dart';
 import 'package:csi5112/merchant/Merchant_Main.dart';
 import 'package:csi5112/models/chatbox.dart';
 import 'package:flutter/material.dart';
-import '../models/chatbox_model_mock.dart';
 import 'package:csi5112/httprequest/get_data.dart';
 
 import 'package:provider/provider.dart';
@@ -64,10 +63,10 @@ class _ChatBoxMerchantState extends State<ChatBoxMerchant> {
       elevation: 0.0,
       automaticallyImplyLeading: false,
       backgroundColor: Colors.transparent,
-      // iconTheme: IconThemeData(color: Colors.black),
       title: Text(
         "Answer the Questions for your Customers",
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(
+            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18.0),
       ),
     );
   }
