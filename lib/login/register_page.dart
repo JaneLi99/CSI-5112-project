@@ -153,30 +153,6 @@ class _RegisterPageState extends State<RegisterPage> {
                           spacing: 10.0,
                           runSpacing: 20.0,
                           children: [
-                            InkWell(
-                              onTap: () {},
-                              child: Container(
-                                height: 50,
-                                width: 170,
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      colors: [
-                                        Colors.grey[600]!,
-                                        Colors.grey[800]!
-                                      ],
-                                      begin: Alignment.topLeft,
-                                      end: Alignment.bottomRight),
-                                  borderRadius: BorderRadius.circular(25),
-                                ),
-                                child: const Center(
-                                  child: Text(
-                                    'Sign Up with Google',
-                                    style: TextStyle(
-                                        color: Colors.white, fontSize: 16),
-                                  ),
-                                ),
-                              ),
-                            ),
                             const SizedBox(width: 20),
                             InkWell(
                               onTap: () {
