@@ -89,37 +89,6 @@ class _RightVeiwState extends State<RightVeiw> {
                 ),
               ),
             ),
-            Text(
-              "Promo Code",
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 14.0,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: "Enter your code",
-                  hintStyle: TextStyle(color: Colors.grey.shade400),
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
-            RaisedButton(
-              onPressed: () {},
-              child: Text(
-                "Apply",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 12.0),
-              ),
-              color: Colors.redAccent,
-              padding: EdgeInsets.symmetric(horizontal: 18.0, vertical: 18.0),
-            ),
             SizedBox(height: 32),
             Spacer(),
             Row(
