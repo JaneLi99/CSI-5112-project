@@ -141,17 +141,15 @@ class _RightVeiwState extends State<RightVeiw> {
   }
 
   showCartEmptyAlert(BuildContext context) {
-    AlertDialog alert = AlertDialog(
-      title: Text("Your Cart is empty."),
-      insetPadding: EdgeInsets.zero,
-      content: Text("Please add something before checkout."),
-    );
-
     // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return Expanded(child: alert);
+        return AlertDialog(
+          title: Text("Your Cart is empty."),
+          insetPadding: EdgeInsets.zero,
+          content: Text("Please add something before checkout."),
+        );
       },
     );
   }
