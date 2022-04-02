@@ -90,7 +90,7 @@ class _LoginPageState extends State<LoginPage> {
                                   if (userNameInput.text ==
                                       localUser[i].userName) {
                                     currentUser = localUser[i];
-                                    print(currentUser.toString());
+                                    // print(currentUser.toString());
                                     loginSuccess = true;
                                     break;
                                   }
@@ -255,50 +255,45 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   showLoginFailAlert(BuildContext context) {
-    // Create AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text("Alert: Login Failed"),
-      insetPadding: EdgeInsets.zero,
-      content: Text("This username has not been registered yet."),
-    );
-
     // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return Expanded(child: alert);
+        return AlertDialog(
+          title: Text("Alert: Login Failed"),
+          insetPadding: EdgeInsets.zero,
+          content: Text("This username has not been registered yet."),
+        );
+        ;
       },
     );
   }
 
   showAdminLoginFailAlert(BuildContext context) {
-    AlertDialog alert = AlertDialog(
-      title: Text("Alert: Login Failed"),
-      insetPadding: EdgeInsets.zero,
-      content: Text("Please use username \"Admin\" to login"),
-    );
-
     // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return Expanded(child: alert);
+        return AlertDialog(
+          title: Text("Alert: Login Failed"),
+          insetPadding: EdgeInsets.zero,
+          content: Text("Please use username \"Admin\" to login"),
+        );
+        ;
       },
     );
   }
 
   showUserNameEmptyAlert(BuildContext context) {
-    AlertDialog alert = AlertDialog(
-      title: Text("Alert: Login Failed"),
-      insetPadding: EdgeInsets.zero,
-      content: Text("Please enter a username to login"),
-    );
-
     // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return Expanded(child: alert);
+        return AlertDialog(
+          title: Text("Alert: Login Failed"),
+          insetPadding: EdgeInsets.zero,
+          content: Text("Please enter a username to login"),
+        );
       },
     );
   }

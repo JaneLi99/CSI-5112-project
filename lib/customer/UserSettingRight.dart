@@ -106,25 +106,25 @@ class _UserSettingRightState extends State<UserSettingRight> {
                             onPressed: () {
                               setState(() {
                                 if (updateUserName.text != "") {
-                                  print(updateUserName.text);
+                                  // print(updateUserName.text);
                                   updatedUser.userName = updateUserName.text;
                                   // updatedUser.userName = "9";
                                 }
                                 if (updatePassword.text != "") {
-                                  print(updatePassword.text);
+                                  // print(updatePassword.text);
                                   updatedUser.password = updatePassword.text;
                                   // updatedUser.password = "99";
                                 }
                                 if (updatePhoneNumber.text != "") {
-                                  print(
-                                      "phonenumber: " + updatePhoneNumber.text);
+                                  // print(
+                                  //     "phonenumber: " + updatePhoneNumber.text);
                                   updatedUser.phoneNumber =
                                       updatePhoneNumber.text;
                                   // updatedUser.phoneNumber = "999";
                                 }
 
                                 if (updateAddress.text != "") {
-                                  print(updateAddress.text);
+                                  // print(updateAddress.text);
                                   updatedUser.address = updateAddress.text;
                                   // updatedUser.address = "9999";
                                 }
@@ -151,16 +151,15 @@ class _UserSettingRightState extends State<UserSettingRight> {
   }
 
   showUpdateSuccessAlert(BuildContext context) {
-    AlertDialog fail = AlertDialog(
-      title: Text("Congrats!"),
-      content: Text("Your information has been updated!"),
-    );
-
     // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return fail;
+        return AlertDialog(
+          title: Text("Congrats!"),
+          content: Text("Your information has been updated!"),
+        );
+        ;
       },
     );
   }

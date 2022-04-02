@@ -157,17 +157,20 @@ class _RegisterPageState extends State<RegisterPage> {
                             InkWell(
                               onTap: () {
                                 bool found = false;
-                                for (int i = 0; i < localUsers.length; i++) {
-                                  if (userNameInput.text ==
-                                      localUsers[i].userName) {
-                                    showUserExistsAlert();
-                                    found = true;
-                                    break;
+                                if (userPasswordInput.text == "" ||
+                                    userNameInput.text == "") {
+                                  showPasswordEmptyAlert();
+                                } else {
+                                  for (int i = 0; i < localUsers.length; i++) {
+                                    if (userNameInput.text ==
+                                        localUsers[i].userName) {
+                                      found = true;
+                                      break;
+                                    }
                                   }
-                                }
-                                if (!found) {
-                                  if (userPasswordInput.text == "") {
-                                    showPasswordEmptyAlert();
+                                  print(found);
+                                  if (found) {
+                                    showUserExistsAlert();
                                   } else {
                                     String newUserName = userNameInput.text;
                                     String newUserPassword =
@@ -231,33 +234,29 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   showUserExistsAlert() {
-    AlertDialog alert = AlertDialog(
-      title: Text("Alert: Create Account Failed"),
-      insetPadding: EdgeInsets.zero,
-      content: Text("The username is existed."),
-    );
-
     // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return Expanded(child: alert);
+        return AlertDialog(
+          title: Text("Alert: Create Account Failed"),
+          insetPadding: EdgeInsets.zero,
+          content: Text("The username is existed."),
+        );
       },
     );
   }
 
   showPasswordEmptyAlert() {
-    AlertDialog alert = AlertDialog(
-      title: Text("Alert: Create Account Failed"),
-      insetPadding: EdgeInsets.zero,
-      content: Text("Please enter your password."),
-    );
-
     // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return Expanded(child: alert);
+        return AlertDialog(
+          title: Text("Alert: Create Account Failed"),
+          insetPadding: EdgeInsets.zero,
+          content: Text("Please enter your username or password."),
+        );
       },
     );
   }

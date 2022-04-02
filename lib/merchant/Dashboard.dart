@@ -125,58 +125,54 @@ class DashboardState extends State<Dashboard> {
   }
 
   Widget DashboardContent() {
-    return Expanded(
-      child: Container(
-        color: Colors.yellow[50],
-        padding: EdgeInsets.all(32.0),
-        child: Column(
-          children: [
-            SizedBox(height: 32.0),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Merchant Managment",
-                  style: headingTextStyle,
-                ),
-              ],
-            ),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 16.0),
-              height: 1.0,
-              color: Colors.grey,
-            ),
-            Row(
-              children: [
-                CategorySelector(),
-              ], // put in middle
-            ),
-            itemList(),
-            addNewItemList(),
-            if (currentCategory == "")
-              Text("Please select a category to delete."),
-            if (currentCategory != "")
-              TextButton(
-                  onPressed: () {
-                    // HttpDelete.deleteProduct();
+    return Container(
+      color: Colors.yellow[50],
+      padding: EdgeInsets.all(32.0),
+      child: Column(
+        children: [
+          SizedBox(height: 32.0),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Merchant Managment",
+                style: headingTextStyle,
+              ),
+            ],
+          ),
+          Container(
+            margin: EdgeInsets.symmetric(vertical: 16.0),
+            height: 1.0,
+            color: Colors.grey,
+          ),
+          Row(
+            children: [
+              CategorySelector(),
+            ], // put in middle
+          ),
+          itemList(),
+          addNewItemList(),
+          if (currentCategory == "")
+            Text("Please select a category to delete."),
+          if (currentCategory != "")
+            TextButton(
+                onPressed: () {
+                  // HttpDelete.deleteProduct();
 
-                    setState(() {
-                      for (int i = 0; i < productIds.length; i++) {
-                        print(resultList[i]);
-                        HttpDelete.deleteProduct(resultList[i]);
-                        // print(productIds);
-                      }
-                      currentCategory = "";
-                      generateResultList(currentCategory);
-                    });
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MerchantMain()));
-                  },
-                  child: Text("Delete ${currentCategory} category")),
-          ],
-        ),
+                  setState(() {
+                    for (int i = 0; i < productIds.length; i++) {
+                      print(resultList[i]);
+                      HttpDelete.deleteProduct(resultList[i]);
+                      // print(productIds);
+                    }
+                    currentCategory = "";
+                    generateResultList(currentCategory);
+                  });
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MerchantMain()));
+                },
+                child: Text("Delete ${currentCategory} category")),
+        ],
       ),
     );
   }
@@ -339,20 +335,20 @@ class DashboardState extends State<Dashboard> {
               width: 70,
               child: TextButton(
                   onPressed: () {
-                    if (digitValidator.hasMatch(updateInventoryInput.text)) {
-                      p.inventory = int.parse(updateInventoryInput.text);
-                      generateResultList("");
-                      showUpdateSuccessAlert(context);
-                    } else {
-                      showUpdateFailAlert(context);
-                    }
                     setState(() {
+                      if (digitValidator.hasMatch(updateInventoryInput.text)) {
+                        p.inventory = int.parse(updateInventoryInput.text);
+                        generateResultList("");
+                        showUpdateSuccessAlert(context);
+                      } else {
+                        showUpdateFailAlert(context);
+                      }
                       HttpPut.updateProductData(p);
                     });
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => MerchantMain()));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => MerchantMain()));
                   },
                   child: Text(
                     "Update",
@@ -480,51 +476,43 @@ class DashboardState extends State<Dashboard> {
   }
 
   showUpdateSuccessAlert(BuildContext context) {
-    // Create AlertDialog
-    AlertDialog succeed = AlertDialog(
-      title: Text("Attention:"),
-      content: Text("Your inventory has been updated"),
-    );
-
     // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return succeed;
+        return AlertDialog(
+          title: Text("Attention:"),
+          content: Text("Your inventory has been updated"),
+        );
       },
     );
   }
 
   showUpdateFailAlert(BuildContext context) {
-    AlertDialog fail = AlertDialog(
-      title: Text("Error:"),
-      content: Text("Please enter a number."),
-    );
-
     // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return fail;
+        return AlertDialog(
+          title: Text("Error:"),
+          content: Text("Please enter a number."),
+        );
       },
     );
   }
 
   showDeleteAlert(BuildContext context) {
-    // Create AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text("Attention:"),
-      content: Text("The item has been deleted"),
-    );
-
     // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return alert;
+        return AlertDialog(
+          title: Text("Attention:"),
+          content: Text("The item has been deleted"),
+        );
       },
     );
   }
 
-  updateBackend() {}
+  // updateBackend() {}
 }

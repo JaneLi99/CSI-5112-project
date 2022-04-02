@@ -345,31 +345,30 @@ class _CategorytScreenState extends State<CategorytScreen> {
       }
     }
     // Create AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: Text("Item Details:"),
-      insetPadding: EdgeInsets.zero,
-      content: Container(
-        height: 300,
-        width: 300,
-        child: ListView(
-          shrinkWrap: true,
-          children: [
-            Image.network(
-              imgPath,
-              height: 150,
-              width: 150,
-            ),
-            Text("\n${currentItemName}\n\$${price}\n\n${description}"),
-          ],
-        ),
-      ),
-    );
 
     // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return Expanded(child: alert);
+        return AlertDialog(
+          title: Text("Item Details:"),
+          insetPadding: EdgeInsets.zero,
+          content: Container(
+            height: 300,
+            width: 300,
+            child: ListView(
+              shrinkWrap: true,
+              children: [
+                Image.network(
+                  imgPath,
+                  height: 150,
+                  width: 150,
+                ),
+                Text("\n${currentItemName}\n\$${price}\n\n${description}"),
+              ],
+            ),
+          ),
+        );
       },
     );
   }
