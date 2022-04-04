@@ -134,7 +134,8 @@ class _LoginPageState extends State<LoginPage> {
                             const SizedBox(width: 10),
                             InkWell(
                               onTap: () {
-                                if (userNameInput.text == "Admin") {
+                                if (userNameInput.text == "Admin" &&
+                                    userPasswordInput.text == "Admin123") {
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(
@@ -279,7 +280,7 @@ class _LoginPageState extends State<LoginPage> {
         return AlertDialog(
           title: Text("Alert: Login Failed"),
           insetPadding: EdgeInsets.zero,
-          content: Text("Please use username \"Admin\" to login"),
+          content: Text("Admin username or password is incorrect"),
         );
         ;
       },
