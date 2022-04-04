@@ -88,7 +88,9 @@ class _LoginPageState extends State<LoginPage> {
                                 // print(userNameInput.text);
                                 for (int i = 0; i < localUser.length; i++) {
                                   if (userNameInput.text ==
-                                      localUser[i].userName) {
+                                          localUser[i].userName &&
+                                      userPasswordInput.text ==
+                                          localUser[i].password) {
                                     currentUser = localUser[i];
                                     // print(currentUser.toString());
                                     loginSuccess = true;
@@ -262,7 +264,7 @@ class _LoginPageState extends State<LoginPage> {
         return AlertDialog(
           title: Text("Alert: Login Failed"),
           insetPadding: EdgeInsets.zero,
-          content: Text("This username has not been registered yet."),
+          content: Text("Your username or password is incorrect."),
         );
         ;
       },
