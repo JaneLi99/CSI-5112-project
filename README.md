@@ -17,3 +17,6 @@ https://docs.google.com/document/d/136ME0yaTBEST9zXmhI7QKAD8cvOJnqG-V2bblftk4lw/
 The docker hub repository of our team is: https://hub.docker.com/repository/docker/w2322402411/csi5112project </br>
 Front-end web: </br>
 Back-end web:  </br>
+
+## Final Project Report
+Our final report is: https://github.com/JaneLi99/CSI-5112-project/blob/master/CSI5112_Final_Project_Group8.pdf
