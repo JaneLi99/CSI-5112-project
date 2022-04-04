@@ -61,5 +61,5 @@ flutter:
         - asset: fonts/Electrolize-Regular.ttf
 
   assets:
-#     - assets/images/
-#     - assets/images/grocerycover.png
+    - assets/images/
+    - assets/images/grocerycover.png
