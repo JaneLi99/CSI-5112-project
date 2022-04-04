@@ -9,9 +9,9 @@ void main() {
 }
 
 class MyApp extends StatefulWidget {
-  static String api = "https://localhost:7042/api";
-  // static String api =
-  //     "http://csi5112project-1216580207.us-east-1.elb.amazonaws.com/api";
+  // static String api = "https://localhost:7042/api";
+  static String api =
+      "http://csi5112project-1216580207.us-east-1.elb.amazonaws.com/api";
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -30,4 +30,4 @@ class _MyAppState extends State<MyApp> {
   }
 }
 
-// Updated by 2022-04-04 11:34am
+// Updated by 2022-04-04 12:43pm

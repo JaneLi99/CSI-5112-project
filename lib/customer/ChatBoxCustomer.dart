@@ -87,23 +87,31 @@ class _ChatBoxCustomerState extends State<ChatBoxCustomer> {
   }
 
   Widget ChatBoxRow(ChatBoxModel c) {
-    bool showReply = false;
-    bool showTextField = true;
-    if (c.reply != "") {
-      showReply = true;
-      showTextField = false;
-    }
+    List<String> replies = [];
+    replies = c.reply.split('^^^');
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "${c.question}",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-          ),
+        Row(
+          children: [
+            Container(
+              width: 500,
+              child: Text(
+                "${c.question}",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            if (replies.length > 1)
+              TextButton(
+                  onPressed: () {
+                    showMoreRepliesAlert(context, c);
+                  },
+                  child: Text("show ${replies.length - 1} replies")),
+          ],
         ),
-        if (showReply) Text("${c.reply}"),
-        if (showTextField) UserInputArea(c),
+        UserInputArea(c),
         SizedBox(
           height: 30,
         ),
@@ -116,12 +124,12 @@ class _ChatBoxCustomerState extends State<ChatBoxCustomer> {
     return Row(
       children: [
         SizedBox(
+          height: 35,
           width: 500,
           child: TextField(
             controller: addReply,
             decoration: InputDecoration(
-              hintText:
-                  "The answer has not been answered yet. Add your reply here:",
+              hintText: "Add your reply here:",
             ),
           ),
         ),
@@ -132,8 +140,10 @@ class _ChatBoxCustomerState extends State<ChatBoxCustomer> {
             color: Colors.blue[200],
             onPressed: () {
               setState(() {
-                c.reply = addReply.text;
-                HttpPut.updateChatboxData(c);
+                if (addReply.text != "") {
+                  c.reply = c.reply + addReply.text + "^^^";
+                  HttpPut.updateChatboxData(c);
+                }
               });
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => CustomerMain()));
@@ -179,6 +189,25 @@ class _ChatBoxCustomerState extends State<ChatBoxCustomer> {
             },
             child: Text("Submit")),
       ],
+    );
+  }
+
+  showMoreRepliesAlert(BuildContext context, ChatBoxModel c) {
+    List<String> replies = c.reply.split("^^^");
+    String reply = "";
+    for (int i = 0; i < replies.length - 1; i++) {
+      reply += "Reply ${i + 1}: " + replies[i] + " \n\n";
+    }
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("${c.question}"),
+          // content: Text("Your information has been updated!"),
+          content: Text(reply),
+        );
+        ;
+      },
     );
   }
 }
