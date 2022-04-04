@@ -234,7 +234,11 @@ class _CategorytScreenState extends State<CategorytScreen> {
       ],
       title: Text(
         "Check for more items",
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 22,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }

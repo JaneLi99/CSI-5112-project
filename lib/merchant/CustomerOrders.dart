@@ -50,7 +50,7 @@ class CustomerOrdersState extends State<CustomerOrders> {
 
   var headingTextStyle = TextStyle(
     fontWeight: FontWeight.bold,
-    fontSize: 18.0,
+    fontSize: 22.0,
   );
 
   @override
@@ -94,6 +94,7 @@ class CustomerOrdersState extends State<CustomerOrders> {
                     color: Colors.grey,
                   ),
                   UserSelector(),
+                  SizedBox(height: 16.0),
                   Table(
                     columnWidths: const {
                       0: FixedColumnWidth(120.0),

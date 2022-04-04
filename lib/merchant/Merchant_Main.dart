@@ -31,7 +31,6 @@ class MerchantMain extends StatefulWidget {
 }
 
 class _MerchantMainState extends State<MerchantMain> {
-  // bool showWelcome = ;
   bool showDashboard = true;
   bool showCustomerOrders = false;
   bool showChatbox = false;

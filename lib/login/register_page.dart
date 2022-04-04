@@ -44,22 +44,24 @@ class _RegisterPageState extends State<RegisterPage> {
           body: Container(
             decoration: const BoxDecoration(
                 image: DecorationImage(
-              image: AssetImage('assets/images/grocerycover.png'),
+              // image: AssetImage('assets/images/grocerycover.png'),
+              image: NetworkImage(
+                  'https://cdn.pixabay.com/photo/2021/01/11/06/52/vegetables-5907330_1280.jpg'),
               fit: BoxFit.cover,
             )),
             child: Padding(
-              padding: const EdgeInsets.only(left: 150, top: 150),
+              padding: const EdgeInsets.only(left: 600, top: 150),
               child: Row(
                 children: [
                   Expanded(
                     flex: 1,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         const Text('LetsGrocery',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                fontSize: 20,
+                                fontSize: 40,
                                 color: Colors.white)),
                         const Padding(
                             padding: EdgeInsets.symmetric(vertical: 20),
@@ -67,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               'Create new account.',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 40,
+                                  fontSize: 30,
                                   color: Colors.white),
                             )),
                         Row(
@@ -76,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               'Already A Member?',
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 15,
+                                  fontSize: 20,
                                   color: Colors.white),
                             ),
                             TextButton(

@@ -66,7 +66,8 @@ class _ChatBoxCustomerState extends State<ChatBoxCustomer> {
       // iconTheme: IconThemeData(color: Colors.black),
       title: Text(
         "Have any questions?",
-        style: TextStyle(color: Colors.black),
+        style: TextStyle(
+            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22.0),
       ),
     );
   }

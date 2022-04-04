@@ -30,7 +30,7 @@ class CustomerOrdersState extends State<CustomerOrders> {
 
   var headingTextStyle = TextStyle(
     fontWeight: FontWeight.bold,
-    fontSize: 18.0,
+    fontSize: 22.0,
   );
 
   @override

@@ -36,12 +36,10 @@ class _ChatBoxMerchantState extends State<ChatBoxMerchant> {
     return FutureBuilder<List<ChatBoxModel>>(
       builder: (context, snapshot) {
         if (snapshot.hasData == false) {
-          // print("empty");
           return const CircularProgressIndicator();
         }
         LocalChatboxList = [...snapshot.data as List<ChatBoxModel>];
         counter = LocalChatboxList.length;
-        // print(counter);
         return Scaffold(
           backgroundColor: Colors.yellow[50],
           appBar: buildAppBar(),
@@ -66,7 +64,7 @@ class _ChatBoxMerchantState extends State<ChatBoxMerchant> {
       title: Text(
         "Answer the Questions for your Customers",
         style: TextStyle(
-            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18.0),
+            color: Colors.black, fontWeight: FontWeight.bold, fontSize: 22.0),
       ),
     );
   }
@@ -80,7 +78,6 @@ class _ChatBoxMerchantState extends State<ChatBoxMerchant> {
         children: [
           for (int i = 0; i < LocalChatboxList.length; i++)
             ChatBoxRow(LocalChatboxList[i]),
-          // addNewQuestion(),
         ],
       ),
     );

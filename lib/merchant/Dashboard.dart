@@ -46,8 +46,6 @@ class DashboardState extends State<Dashboard> {
           productIds.add(items[i].id);
         }
       }
-      // productIds = List.from(resultList.id);
-      // print(productIds);
     }
   }
 
@@ -81,18 +79,13 @@ class DashboardState extends State<Dashboard> {
 
   var headingTextStyle = TextStyle(
     fontWeight: FontWeight.bold,
-    fontSize: 18.0,
-  );
-  var subHeadingTextStyle = TextStyle(
-    color: Colors.grey,
-    fontSize: 14.0,
+    fontSize: 22.0,
   );
 
   @override
   void initState() {
     super.initState();
     products = HttpGet.fetchProducts();
-    // print(products);
   }
 
   @override
@@ -150,6 +143,7 @@ class DashboardState extends State<Dashboard> {
               CategorySelector(),
             ], // put in middle
           ),
+          SizedBox(height: 16.0),
           itemList(),
           addNewItemList(),
           if (currentCategory == "")
@@ -157,13 +151,10 @@ class DashboardState extends State<Dashboard> {
           if (currentCategory != "")
             TextButton(
                 onPressed: () {
-                  // HttpDelete.deleteProduct();
-
                   setState(() {
                     for (int i = 0; i < productIds.length; i++) {
                       print(resultList[i]);
                       HttpDelete.deleteProduct(resultList[i]);
-                      // print(productIds);
                     }
                     currentCategory = "";
                     generateResultList(currentCategory);
@@ -345,10 +336,6 @@ class DashboardState extends State<Dashboard> {
                       }
                       HttpPut.updateProductData(p);
                     });
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => MerchantMain()));
                   },
                   child: Text(
                     "Update",
@@ -364,7 +351,6 @@ class DashboardState extends State<Dashboard> {
           child: Text(
             "${p.price}",
             textAlign: TextAlign.center,
-            // style: TextStyle(height: 20),
           ),
         ),
       ),
@@ -374,7 +360,6 @@ class DashboardState extends State<Dashboard> {
           child: Text(
             p.description,
             textAlign: TextAlign.center,
-            // style: TextStyle(height: 20),
           ),
         ),
       ),
@@ -460,7 +445,6 @@ class DashboardState extends State<Dashboard> {
                         price: double.parse(addItemPrice.text),
                         description: addItemDescription.text,
                         inventory: int.parse(addItemInventory.text));
-                    // print(newProduct);
                     addProduct(newProduct);
                     generateResultList("");
                   });
@@ -513,6 +497,4 @@ class DashboardState extends State<Dashboard> {
       },
     );
   }
-
-  // updateBackend() {}
 }
