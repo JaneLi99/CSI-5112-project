@@ -14,9 +14,6 @@ Jiaming Li </br>
 https://docs.google.com/document/d/136ME0yaTBEST9zXmhI7QKAD8cvOJnqG-V2bblftk4lw/edit?usp=sharing </br>
 
 ## Documents of Second Phase:
-- Overview description and introduction of our website: 
-https://docs.google.com/document/d/136ME0yaTBEST9zXmhI7QKAD8cvOJnqG-V2bblftk4lw/edit?usp=sharing </br>
-
 - Postman collection for testing the API:
 https://documenter.getpostman.com/view/12075327/UVsPR5fi </br>
 
