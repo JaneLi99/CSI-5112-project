@@ -107,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                                   );
                                 },
                                 child: Text(
-                                  "Click here to review your previous orders",
+                                  "Click here to go to your account and review your previous orders",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                   ),

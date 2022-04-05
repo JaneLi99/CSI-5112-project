@@ -9,18 +9,6 @@ import '../main.dart';
 import '../models/product.dart';
 
 class HttpPut {
-  // static Future<void> updateOrderData(
-  //     ShoppingCartModel shoppingCartModel) async {
-  //   final url = Uri.parse('https://localhost:7042/api/order/o001111');
-  //   final headers = {"Content-type": "application/json"};
-  //   final json =
-  //       '{"orderId":"o001111","userId":"u0011111","orderDate":${DateTime.now()},"totalPrice":${shoppingCartModel.paymentPrice},"orderAddress":"33-186 Stewart Street"}';
-  //   final response = await put(url, headers: headers, body: json);
-  //   print('Status code: ${response.statusCode}');
-  //   print('Headers: ${response.headers}');
-  //   print('Body: ${response.body}');
-  // }
-
   static Future<void> updateChatboxData(ChatBoxModel chatBoxModel) async {
     final url = Uri.parse(MyApp.api + "/chatbox");
     final headers = {"Content-type": "application/json"};

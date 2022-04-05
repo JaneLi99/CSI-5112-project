@@ -105,7 +105,7 @@ class _ChatBoxMerchantState extends State<ChatBoxMerchant> {
                   onPressed: () {
                     showMoreRepliesAlert(context, c);
                   },
-                  child: Text("show ${replies.length - 1} replies")),
+                  child: Text("show ${replies.length - 1} reply(replies)")),
           ],
         ),
         UserInputArea(c),

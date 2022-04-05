@@ -146,7 +146,7 @@ class _RightVeiwState extends State<RightVeiw> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text("Your Cart is empty."),
+          title: Text("Your cart is empty."),
           insetPadding: EdgeInsets.zero,
           content: Text("Please add something before checkout."),
         );

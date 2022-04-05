@@ -109,7 +109,7 @@ class _ChatBoxCustomerState extends State<ChatBoxCustomer> {
                   onPressed: () {
                     showMoreRepliesAlert(context, c);
                   },
-                  child: Text("show ${replies.length - 1} replies")),
+                  child: Text("show ${replies.length - 1} (reply)replies")),
           ],
         ),
         UserInputArea(c),

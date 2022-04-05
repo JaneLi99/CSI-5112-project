@@ -132,7 +132,7 @@ class _RegisterPageState extends State<RegisterPage> {
                               child: TextField(
                                 controller: userPasswordInput,
                                 decoration: InputDecoration(
-                                    labelText: 'password',
+                                    labelText: 'Password',
                                     suffixIcon: IconButton(
                                       icon: Icon(
                                         Icons.visibility,
