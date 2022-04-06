@@ -62,15 +62,6 @@ class _UserSettingRightState extends State<UserSettingRight> {
                     padding: const EdgeInsets.symmetric(horizontal: 32.0),
                     child: Column(
                       children: <Widget>[
-                        TextField(
-                          controller: updateUserName,
-                          decoration: InputDecoration(
-                            filled: true,
-                            hintText: "User Name: ${user.userName}",
-                            fillColor: Colors.white,
-                            border: InputBorder.none,
-                          ),
-                        ),
                         SizedBox(height: 8.0),
                         TextField(
                           controller: updatePassword,

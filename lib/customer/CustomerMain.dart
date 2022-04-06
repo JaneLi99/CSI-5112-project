@@ -33,9 +33,9 @@ class CustomerMain extends StatefulWidget {
 }
 
 class _CustomerMainState extends State<CustomerMain> {
-  bool showPreviousOrders = false;
+  bool showPreviousOrders = true;
   bool showSettings = false;
-  bool showChatbox = true;
+  bool showChatbox = false;
   UserModel currentUser = loginPage.currentUser;
   @override
   Widget build(BuildContext context) {
@@ -74,6 +74,22 @@ class _CustomerMainState extends State<CustomerMain> {
             ListTile(
               onTap: () {
                 setState(() {
+                  showPreviousOrders = true;
+                  showSettings = false;
+                  showChatbox = false;
+                });
+              },
+              horizontalTitleGap: 0.0,
+              leading: const Icon(Icons.receipt),
+              title: Text(
+                "Previous Orders",
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+              ),
+            ),
+            ListTile(
+              onTap: () {
+                setState(() {
                   // showWelcome = false;
                   showPreviousOrders = false;
                   showSettings = false;
@@ -84,22 +100,6 @@ class _CustomerMainState extends State<CustomerMain> {
               leading: const Icon(Icons.chat),
               title: Text(
                 "Chatbox",
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-              ),
-            ),
-            ListTile(
-              onTap: () {
-                setState(() {
-                  showPreviousOrders = true;
-                  showSettings = false;
-                  showChatbox = false;
-                });
-              },
-              horizontalTitleGap: 0.0,
-              leading: const Icon(Icons.receipt),
-              title: Text(
-                "Previous Orders",
                 style:
                     TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),

@@ -41,7 +41,6 @@ class _ChatBoxCustomerState extends State<ChatBoxCustomer> {
         }
         LocalChatboxList = [...snapshot.data as List<ChatBoxModel>];
         counter = LocalChatboxList.length;
-        // print(counter);
         return Scaffold(
           backgroundColor: Colors.yellow[50],
           appBar: buildAppBar(),
@@ -109,7 +108,7 @@ class _ChatBoxCustomerState extends State<ChatBoxCustomer> {
                   onPressed: () {
                     showMoreRepliesAlert(context, c);
                   },
-                  child: Text("show ${replies.length - 1} (reply)replies")),
+                  child: Text("show ${replies.length - 1} (reply) replies")),
           ],
         ),
         UserInputArea(c),

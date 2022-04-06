@@ -195,13 +195,14 @@ class DashboardState extends State<Dashboard> {
   Widget itemList() {
     return Table(
       columnWidths: const {
-        0: FixedColumnWidth(80.0),
+        0: FixedColumnWidth(90.0),
         1: FixedColumnWidth(100.0),
         2: FixedColumnWidth(150.0),
-        3: FixedColumnWidth(120.0),
+        3: FixedColumnWidth(100.0),
         4: FixedColumnWidth(80.0),
         5: FixedColumnWidth(380.0),
         6: FixedColumnWidth(60.0),
+        7: FixedColumnWidth(60.0),
       },
       border: TableBorder.all(
         color: Colors.black,
@@ -252,6 +253,11 @@ class DashboardState extends State<Dashboard> {
                 style: TextStyle(fontWeight: FontWeight.bold),
                 textAlign: TextAlign.center,
               ),
+              Text(
+                'Update Item',
+                style: TextStyle(fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
             ]),
         // TableRow(),
 
@@ -263,6 +269,11 @@ class DashboardState extends State<Dashboard> {
 
   TableRow GenerateItemTableRow(ProductModel p) {
     TextEditingController updateInventoryInput = TextEditingController();
+    TextEditingController updateCategoryInput = TextEditingController();
+    TextEditingController updateNameInput = TextEditingController();
+    TextEditingController updatePriceInput = TextEditingController();
+    TextEditingController updateDescriptionInput = TextEditingController();
+    // TextEditingController updateCategoryInput = TextEditingController();
 
     void setValidator(valid) {
       setState(() {
@@ -275,20 +286,42 @@ class DashboardState extends State<Dashboard> {
       Container(
         height: 60,
         child: Align(
-          child: Text(
-            p.categoryName,
-            textAlign: TextAlign.center,
-            // style: TextStyle(height: 20),
+          child: Row(
+            children: [
+              SizedBox(
+                height: 40,
+                width: 80,
+                child: TextField(
+                  textAlign: TextAlign.center,
+                  controller: updateCategoryInput,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "${p.categoryName}",
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
       Container(
         height: 60,
         child: Align(
-          child: Text(
-            p.name,
-            textAlign: TextAlign.center,
-            // style: TextStyle(height: 20),
+          child: Row(
+            children: [
+              SizedBox(
+                height: 40,
+                width: 100,
+                child: TextField(
+                  textAlign: TextAlign.center,
+                  controller: updateNameInput,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "${p.name}",
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -315,32 +348,13 @@ class DashboardState extends State<Dashboard> {
               height: 40,
               width: 50,
               child: TextField(
+                textAlign: TextAlign.center,
                 controller: updateInventoryInput,
                 decoration: InputDecoration(
+                  border: InputBorder.none,
                   hintText: "${p.inventory}",
                 ),
               ),
-            ),
-            SizedBox(
-              height: 60,
-              width: 70,
-              child: TextButton(
-                  onPressed: () {
-                    setState(() {
-                      if (digitValidator.hasMatch(updateInventoryInput.text)) {
-                        p.inventory = int.parse(updateInventoryInput.text);
-                        generateResultList("");
-                        showUpdateSuccessAlert(context);
-                      } else {
-                        showUpdateFailAlert(context);
-                      }
-                      HttpPut.updateProductData(p);
-                    });
-                  },
-                  child: Text(
-                    "Update",
-                    textAlign: TextAlign.left,
-                  )),
             ),
           ],
         )),
@@ -348,18 +362,41 @@ class DashboardState extends State<Dashboard> {
       Container(
         height: 60,
         child: Align(
-          child: Text(
-            "${p.price}",
-            textAlign: TextAlign.center,
+          child: Row(
+            children: [
+              SizedBox(
+                height: 40,
+                width: 60,
+                child: TextField(
+                  textAlign: TextAlign.center,
+                  controller: updatePriceInput,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "${p.price}",
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
       Container(
         height: 80,
         child: Align(
-          child: Text(
-            p.description,
-            textAlign: TextAlign.center,
+          child: Row(
+            children: [
+              SizedBox(
+                height: 40,
+                width: 250,
+                child: TextField(
+                  controller: updateDescriptionInput,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "${p.description}",
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -380,6 +417,36 @@ class DashboardState extends State<Dashboard> {
                   MaterialPageRoute(builder: (context) => MerchantMain()));
             },
           )),
+      Container(
+        height: 60,
+        child: IconButton(
+          icon: Icon(Icons.upload),
+          onPressed: () {
+            setState(() {
+              if (updateCategoryInput.text != "") {
+                p.categoryName = updateCategoryInput.text;
+              }
+              if (updateNameInput.text != "") {
+                p.name = updateNameInput.text;
+              }
+              if (updatePriceInput.text != "") {
+                p.price = double.parse(updatePriceInput.text);
+              }
+              if (updateDescriptionInput.text != "") {
+                p.description = updateDescriptionInput.text;
+              }
+              if (digitValidator.hasMatch(updateInventoryInput.text)) {
+                p.inventory = int.parse(updateInventoryInput.text);
+                generateResultList("");
+                showUpdateSuccessAlert(context);
+              } else {
+                // showUpdateFailAlert(context);
+              }
+              HttpPut.updateProductData(p);
+            });
+          },
+        ),
+      ),
     ]);
   }
 
@@ -394,13 +461,14 @@ class DashboardState extends State<Dashboard> {
       children: [
         Table(
           columnWidths: const {
-            0: FixedColumnWidth(80.0),
+            0: FixedColumnWidth(90.0),
             1: FixedColumnWidth(100.0),
             2: FixedColumnWidth(150.0),
-            3: FixedColumnWidth(120.0),
+            3: FixedColumnWidth(100.0),
             4: FixedColumnWidth(80.0),
             5: FixedColumnWidth(380.0),
-            6: FixedColumnWidth(60.0),
+            6: FixedColumnWidth(120.0),
+            // 7: FixedColumnWidth(60.0),
           },
           border: TableBorder.all(
             color: Colors.black,
@@ -410,10 +478,12 @@ class DashboardState extends State<Dashboard> {
           children: [
             TableRow(children: [
               TextField(
+                textAlign: TextAlign.center,
                 decoration: InputDecoration(labelText: "Item Category"),
                 controller: addItemCategory,
               ),
               TextField(
+                textAlign: TextAlign.center,
                 decoration: InputDecoration(labelText: "Item name"),
                 controller: addItemName,
               ),
@@ -422,10 +492,12 @@ class DashboardState extends State<Dashboard> {
                 controller: addItemImagePath,
               ),
               TextField(
+                textAlign: TextAlign.center,
                 decoration: InputDecoration(labelText: "Inventory"),
                 controller: addItemInventory,
               ),
               TextField(
+                textAlign: TextAlign.center,
                 decoration: InputDecoration(labelText: "Price"),
                 controller: addItemPrice,
               ),
@@ -472,18 +544,18 @@ class DashboardState extends State<Dashboard> {
     );
   }
 
-  showUpdateFailAlert(BuildContext context) {
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text("Error:"),
-          content: Text("Please enter a number."),
-        );
-      },
-    );
-  }
+  // showUpdateFailAlert(BuildContext context) {
+  //   // show the dialog
+  //   showDialog(
+  //     context: context,
+  //     builder: (BuildContext context) {
+  //       return AlertDialog(
+  //         title: Text("Error:"),
+  //         content: Text("Please enter a number."),
+  //       );
+  //     },
+  //   );
+  // }
 
   showDeleteAlert(BuildContext context) {
     // show the dialog

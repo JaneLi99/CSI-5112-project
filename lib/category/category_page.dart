@@ -341,11 +341,13 @@ class _CategorytScreenState extends State<CategorytScreen> {
     String imgPath = "";
     double price = 0.0;
     String description = "";
+    int inventory = 0;
     for (int i = 0; i < items.length; i++) {
       if (items[i].name == currentItemName) {
         imgPath = items[i].imgUrl;
         price = items[i].price;
         description = items[i].description;
+        inventory = items[i].inventory;
       }
     }
     // Create AlertDialog
@@ -368,7 +370,8 @@ class _CategorytScreenState extends State<CategorytScreen> {
                   height: 150,
                   width: 150,
                 ),
-                Text("\n${currentItemName}\n\$${price}\n\n${description}"),
+                Text(
+                    "\n${currentItemName}\n\$${price}\n\nInventory: ${inventory}\n\n${description}"),
               ],
             ),
           ),
