@@ -198,9 +198,9 @@ class DashboardState extends State<Dashboard> {
         0: FixedColumnWidth(90.0),
         1: FixedColumnWidth(100.0),
         2: FixedColumnWidth(150.0),
-        3: FixedColumnWidth(100.0),
+        3: FixedColumnWidth(80.0),
         4: FixedColumnWidth(80.0),
-        5: FixedColumnWidth(380.0),
+        5: FixedColumnWidth(400.0),
         6: FixedColumnWidth(60.0),
         7: FixedColumnWidth(60.0),
       },
@@ -290,7 +290,7 @@ class DashboardState extends State<Dashboard> {
             children: [
               SizedBox(
                 height: 40,
-                width: 80,
+                width: 90,
                 child: TextField(
                   textAlign: TextAlign.center,
                   controller: updateCategoryInput,
@@ -316,6 +316,7 @@ class DashboardState extends State<Dashboard> {
                   textAlign: TextAlign.center,
                   controller: updateNameInput,
                   decoration: InputDecoration(
+                    hintMaxLines: 3,
                     border: InputBorder.none,
                     hintText: "${p.name}",
                   ),
@@ -340,13 +341,13 @@ class DashboardState extends State<Dashboard> {
         ),
       ),
       Container(
-        height: 40,
+        height: 60,
         child: Align(
             child: Row(
           children: [
             SizedBox(
               height: 40,
-              width: 50,
+              width: 80,
               child: TextField(
                 textAlign: TextAlign.center,
                 controller: updateInventoryInput,
@@ -366,7 +367,7 @@ class DashboardState extends State<Dashboard> {
             children: [
               SizedBox(
                 height: 40,
-                width: 60,
+                width: 80,
                 child: TextField(
                   textAlign: TextAlign.center,
                   controller: updatePriceInput,
@@ -386,11 +387,12 @@ class DashboardState extends State<Dashboard> {
           child: Row(
             children: [
               SizedBox(
-                height: 40,
-                width: 250,
+                height: 75,
+                width: 390,
                 child: TextField(
                   controller: updateDescriptionInput,
                   decoration: InputDecoration(
+                    hintMaxLines: 5,
                     border: InputBorder.none,
                     hintText: "${p.description}",
                   ),
@@ -464,11 +466,10 @@ class DashboardState extends State<Dashboard> {
             0: FixedColumnWidth(90.0),
             1: FixedColumnWidth(100.0),
             2: FixedColumnWidth(150.0),
-            3: FixedColumnWidth(100.0),
+            3: FixedColumnWidth(80.0),
             4: FixedColumnWidth(80.0),
-            5: FixedColumnWidth(380.0),
+            5: FixedColumnWidth(400.0),
             6: FixedColumnWidth(120.0),
-            // 7: FixedColumnWidth(60.0),
           },
           border: TableBorder.all(
             color: Colors.black,
