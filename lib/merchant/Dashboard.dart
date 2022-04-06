@@ -273,7 +273,6 @@ class DashboardState extends State<Dashboard> {
     TextEditingController updateNameInput = TextEditingController();
     TextEditingController updatePriceInput = TextEditingController();
     TextEditingController updateDescriptionInput = TextEditingController();
-    // TextEditingController updateCategoryInput = TextEditingController();
 
     void setValidator(valid) {
       setState(() {
@@ -412,7 +411,6 @@ class DashboardState extends State<Dashboard> {
               generateCategoryList(items);
               setState(() {
                 showDeleteAlert(context);
-                // print(currentCategory);
                 generateResultList(currentCategory);
               });
               Navigator.push(context,
@@ -441,9 +439,7 @@ class DashboardState extends State<Dashboard> {
                 p.inventory = int.parse(updateInventoryInput.text);
                 generateResultList("");
                 showUpdateSuccessAlert(context);
-              } else {
-                // showUpdateFailAlert(context);
-              }
+              } else {}
               HttpPut.updateProductData(p);
             });
           },
@@ -533,7 +529,6 @@ class DashboardState extends State<Dashboard> {
   }
 
   showUpdateSuccessAlert(BuildContext context) {
-    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -545,21 +540,7 @@ class DashboardState extends State<Dashboard> {
     );
   }
 
-  // showUpdateFailAlert(BuildContext context) {
-  //   // show the dialog
-  //   showDialog(
-  //     context: context,
-  //     builder: (BuildContext context) {
-  //       return AlertDialog(
-  //         title: Text("Error:"),
-  //         content: Text("Please enter a number."),
-  //       );
-  //     },
-  //   );
-  // }
-
   showDeleteAlert(BuildContext context) {
-    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
